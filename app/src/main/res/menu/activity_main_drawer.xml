@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_customers"
+            android:icon="@drawable/cust"
+            android:title="Customers" />
+        <item
+            android:id="@+id/nav_items"
+            android:icon="@drawable/item"
+            android:title="Items" />
+        <item
+            android:id="@+id/nav_vendors"
+            android:icon="@drawable/vendor"
+            android:title="Vendors" />
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/sales"
+            android:title="Sales Orders" />
+        <item
+            android:id="@+id/nav_package"
+            android:icon="@drawable/pack"
+            android:title="Packages" />
+        <item
+            android:id="@+id/nav_invoice"
+            android:icon="@drawable/invoice"
+            android:title="Invoices" />
+        <item
+            android:id="@+id/nav_purchase"
+            android:icon="@drawable/purchase"
+            android:title="Purchase Orders" />
+        <item
+            android:id="@+id/nav_bill"
+            android:icon="@drawable/payment"
+            android:title="Bills" />
+
+    </group>
+</menu>

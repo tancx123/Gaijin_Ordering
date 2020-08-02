@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+
+        android:id="@+id/sv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foregroundTint="#000000"
+            tools:context=".ui.dashboard.DashboardFragment">
+
+            <TextView
+                android:id="@+id/sales_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Sales Activity"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+                <ImageButton
+
+                    android:id="@+id/del_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="#66BB6A"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="50dp"
+                    android:textSize="14sp">
+
+                </ImageButton>
+
+                <ImageView
+                    android:id="@+id/delImg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    app:srcCompat="@drawable/delivered" />
+
+                <TextView
+                    android:id="@+id/del_text_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/delImg"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/del_text_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/del_text_one"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/delImg"
+                    android:text="Quantity to be shipped"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/ImageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sales_activity">
+
+                <ImageButton
+
+                    android:id="@+id/pack_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="#FFCA28"
+                    android:textSize="14sp">
+
+                </ImageButton>
+
+                <ImageView
+                    android:id="@+id/courseImg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    app:srcCompat="@drawable/packed" />
+
+                <TextView
+                    android:id="@+id/pack_text_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/courseImg"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pack_text_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pack_text_one"
+
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/courseImg"
+                    android:text="Quantity to be packed"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <ImageButton
+
+                    android:id="@+id/ship_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="#26C6DA"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="50dp"
+                    android:textSize="14sp">
+
+                </ImageButton>
+
+                <ImageView
+                    android:id="@+id/shipImg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    app:srcCompat="@drawable/shipped" />
+
+                <TextView
+                    android:id="@+id/ship_text_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/shipImg"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ship_text_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ship_text_one"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/shipImg"
+                    android:text="Quantity to be shipped"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+                <ImageButton
+
+                    android:id="@+id/inv_but"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="#EF5350"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="50dp"
+                    android:textSize="14sp">
+
+                </ImageButton>
+
+                <ImageView
+                    android:id="@+id/invImg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    app:srcCompat="@drawable/bill" />
+
+                <TextView
+                    android:id="@+id/inv_text_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/invImg"
+                    android:text="0"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/inv_text_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inv_text_one"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/invImg"
+                    android:text="Quantity to be invoiced"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/ImageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_baseline_refresh_24"
+                android:tint="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:fab_addButtonColorNormal="@color/cardview_dark_background"
+        app:fab_addButtonColorPressed="@color/black_semi_transparent"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/salesFB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/sales"
+            app:fab_title="Sales Order" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/purchFB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/purchase"
+            app:fab_title="Purchase Order (Payment Main Eg)" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/invFB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/invoice"
+            app:fab_title="Invoice" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/billFB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_icon="@drawable/payment"
+            app:fab_title="Bill (Package Main Eg)" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</RelativeLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.example.orderandinventorysystem.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/nav_customers"
+        android:name="com.example.orderandinventorysystem.ui.customer.CustomerFragment"
+        android:label="Customers"
+        tools:layout="@layout/fragment_customer" />
+
+    <fragment
+        android:id="@+id/nav_items"
+        android:name="com.example.orderandinventorysystem.ui.item.ItemFragment"
+        android:label="Items"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_vendors"
+        android:name="com.example.orderandinventorysystem.ui.vendor.VendorFragment"
+        android:label="Vendors"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_sales"
+        android:name="com.example.orderandinventorysystem.ui.sales.SalesFragment"
+        android:label="Sales Orders"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_package"
+        android:name="com.example.orderandinventorysystem.ui.pack.PackageFragment"
+        android:label="Packages"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_invoice"
+        android:name="com.example.orderandinventorysystem.ui.invoice.InvoiceFragment"
+        android:label="Invoices"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_purchase"
+        android:name="com.example.orderandinventorysystem.ui.purchase.PurchaseFragment"
+        android:label="Purchase Orders"
+        tools:layout="@layout/fragment_item" />
+
+    <fragment
+        android:id="@+id/nav_bill"
+        android:name="com.example.orderandinventorysystem.ui.bill.BillFragment"
+        android:label="Bills"
+        tools:layout="@layout/fragment_item" />
+
+</navigation>
