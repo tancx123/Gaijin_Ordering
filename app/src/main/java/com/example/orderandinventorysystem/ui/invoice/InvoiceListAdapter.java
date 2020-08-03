@@ -1,4 +1,4 @@
-package com.example.orderandinventorysystem.ui.item;
+package com.example.orderandinventorysystem.ui.invoice;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,19 +8,19 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.orderandinventorysystem.Model.Item;
+import com.example.orderandinventorysystem.Model.Invoice;
 import com.example.orderandinventorysystem.R;
 
 import java.util.List;
 
-public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
+public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.ViewHolder> {
 
-    private List<Item> mData;
+    private List<Invoice> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public ItemListAdapter(Context context, List<Item> data) {
+    public InvoiceListAdapter(Context context, List<Invoice> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -28,18 +28,20 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_list_layout, parent, false);
+        View view = mInflater.inflate(R.layout.invoice_list_layout, parent, false);
         return new ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Item item = mData.get(position);
-        holder.name.setText(item.getItemName());
-        holder.desc.setText(item.getItemDesc());
-        holder.quantity.setText(String.format("%d", item.getQuantity()));
-        holder.unit.setText(item.getItemUnit());
+        Invoice inv = mData.get(position);
+        holder.name.setText(inv.getInvCustName());
+        holder.id.setText(inv.getSalesID());
+        holder.id.setText(inv.getInvID());
+        holder.date.setText(inv.getInvDate());
+        holder.status.setText(inv.getInvStatus());
+        holder.price.setText(String.format("%.2f", inv.getInvPrice()));
     }
 
     // total number of rows
@@ -50,14 +52,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, desc, quantity, unit;
+        TextView name, id, date, status, price, id2;
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.item_name);
-            desc = itemView.findViewById(R.id.item_desc);
-            quantity = itemView.findViewById(R.id.item_quantity);
-            unit = itemView.findViewById(R.id.item_unit);
+            name = itemView.findViewById(R.id.cust_name_view);
+            id = itemView.findViewById(R.id.invoice_id);
+            id2 = itemView.findViewById(R.id.sales_order_id);
+            date = itemView.findViewById(R.id.invoice_date);
+            status = itemView.findViewById(R.id.inv_order_status2);
+            price = itemView.findViewById(R.id.inv_order_price);
             itemView.setOnClickListener(this);
         }
 
@@ -68,7 +72,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
     }
 
     // convenience method for getting data at click position
-    public Item getItem(int id) {
+    public Invoice getItem(int id) {
         return mData.get(id);
     }
 
