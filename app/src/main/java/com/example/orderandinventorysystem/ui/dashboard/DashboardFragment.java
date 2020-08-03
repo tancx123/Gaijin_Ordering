@@ -17,6 +17,7 @@ import com.example.orderandinventorysystem.CustomerOrder;
 import com.example.orderandinventorysystem.MainActivity;
 import com.example.orderandinventorysystem.R;
 import com.example.orderandinventorysystem.ui.invoice.InvoiceMainFragment;
+import com.example.orderandinventorysystem.ui.invoice.add_new_invoice;
 import com.example.orderandinventorysystem.ui.pack.PackageMain;
 import com.example.orderandinventorysystem.ui.payment.PaymentMain;
 import com.example.orderandinventorysystem.ui.sales.SalesOrderMainFragment;
@@ -44,7 +45,7 @@ public class DashboardFragment extends Fragment {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), InvoiceMainFragment.class));
+                startActivity(new Intent(getContext(), add_new_invoice.class));
             }
         });
         FloatingActionButton fab3 = root.findViewById(R.id.salesFB);

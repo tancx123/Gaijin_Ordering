@@ -378,7 +378,7 @@
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/white_pressed"
             app:fab_icon="@drawable/purchase"
-            app:fab_title="Purchase Order (Payment Main Eg)" />
+            app:fab_title="Purchase Order" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/invFB"
@@ -396,7 +396,7 @@
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/white_pressed"
             app:fab_icon="@drawable/payment"
-            app:fab_title="Bill (Package Main Eg)" />
+            app:fab_title="Bill" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

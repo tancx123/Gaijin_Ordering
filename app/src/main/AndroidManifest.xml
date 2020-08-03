@@ -30,6 +30,8 @@
         <activity android:name=".ui.pack.PackageMain"></activity>
         <activity android:name=".ui.customer.CustomerMain"></activity>
         <activity android:name=".ui.item.ItemMain"></activity>
+        <activity android:name=".ui.invoice.add_new_invoice"></activity>
+        <activity android:name=".ui.invoice.add_line_item"></activity>
     </application>
 
 </manifest>
