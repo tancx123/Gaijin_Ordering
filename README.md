@@ -7,8 +7,12 @@ UI Done
 - Payment (Main)
 - Invoice (Main)
 - Package (Main)
-- Package (Nav Drawer *Without item listing)
+- Package (Nav Drawer)
 - Customers (Nav Drawer)
+- Items (Nav Drawer)
+- Sales Orders (Nav Drawer)
+- Invoices (Nav Drawer)
+
 
 UI Left
 -------
@@ -23,13 +27,9 @@ UI Left
 - Purchase Orders (Add / Edit)
 - Bills (Main)
 - Bills (Add / Edit)
-- Items (Nav Drawer)
-- Sales Orders (Nav Drawer)
-- Invoices (Nav Drawer)
 - Vendors (Nav Drawer)
 - Purchase Orders (Nav Drawer)
 - Bills (Nav Drawer)
 - Sales Report
 - Login
 - Staff Management (CRUD)
-
