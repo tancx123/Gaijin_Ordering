@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_receipt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            app:elevation="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/grey_background_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cons"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/cardview_dark_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Machine A"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Selling Price"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_name" />
+
+                <TextView
+                    android:id="@+id/sell_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="MYR20.00"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/item_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="per pcs"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/sell_price"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Purchase Cost"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sell_price" />
+
+                <TextView
+                    android:id="@+id/purchase_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="MYR15.00"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <TextView
+                    android:id="@+id/item_unit_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="per pcs"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/sell_price"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TableLayout
+                android:id="@+id/f_table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:background="#FFFFFF"
+                android:padding="15dp"
+                android:stretchColumns="*">
+
+                <!-- first row of the table layout-->
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Stock Summary"
+
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Accounting"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Physical"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Stock on Hand"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <TextView
+
+                        android:id="@+id/account_stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.00"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:id="@+id/phy_stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.00"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available for Sale"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <TextView
+
+                        android:id="@+id/account_available"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:id="@+id/phy_available"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
