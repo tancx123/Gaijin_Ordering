@@ -37,4 +37,6 @@ dependencies {
     implementation 'org.neo4j.driver:neo4j-java-driver:4.1.0'
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
 }

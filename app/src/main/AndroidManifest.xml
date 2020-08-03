@@ -28,6 +28,7 @@
         <activity android:name=".ui.invoice.InvoiceMainFragment"></activity>
         <activity android:name=".ui.payment.PaymentMain"></activity>
         <activity android:name=".ui.pack.PackageMain"></activity>
+        <activity android:name=".ui.customer.CustomerMain"></activity>
     </application>
 
 </manifest>
