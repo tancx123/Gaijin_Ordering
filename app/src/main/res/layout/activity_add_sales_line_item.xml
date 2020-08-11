@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/invoice_main_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:elevation="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/grey_background_layout"
+        tools:context=".ui.invoice.add_line_item">
+
+        <TextView
+            android:id="@+id/group_add_sales_line_item"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:background="@android:color/white"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_item_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="15dp"
+            android:text="Item"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/group_add_sales_line_item"
+            app:layout_constraintTop_toTopOf="@+id/group_add_sales_line_item" />
+
+        <EditText
+            android:id="@+id/text_item_input_sales"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Start typing to select item"
+            app:layout_constraintEnd_toEndOf="@+id/text_item_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_item_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_sales" />
+
+        <TextView
+            android:id="@+id/text_description_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Description"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/text_item_input_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_item_input_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_input_sales" />
+
+        <EditText
+            android:id="@+id/text_description_input_sales"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Add description for your item"
+            app:layout_constraintEnd_toEndOf="@+id/text_description_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_description_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_description_sales" />
+
+        <TextView
+            android:id="@+id/text_quantity_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Quantity *"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/text_description_input_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_description_input_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_description_input_sales" />
+
+        <TextView
+            android:id="@+id/text_rate_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="30dp"
+            android:text="Rate *"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
+            app:layout_constraintStart_toEndOf="@+id/text_quantity_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_description_input_sales" />
+
+        <EditText
+            android:id="@+id/text_quantity_input_sales"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="1.00"
+            app:layout_constraintEnd_toEndOf="@+id/text_quantity_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_quantity_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_quantity_sales" />
+
+        <EditText
+            android:id="@+id/text_rate_input_sales"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/text_rate_sales"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_rate_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_rate_sales" />
+
+        <TextView
+            android:id="@+id/text_tax_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Tax"
+            android:textColor="#000000"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_quantity_input_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_quantity_input_sales" />
+
+        <TextView
+            android:id="@+id/text_tax_input_sales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Tax (Drop down List)"
+            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/text_tax_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_tax_sales" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

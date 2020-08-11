@@ -1,7 +1,5 @@
 package com.example.orderandinventorysystem.ui.dashboard;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,20 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.orderandinventorysystem.CustomerOrder;
-import com.example.orderandinventorysystem.MainActivity;
 import com.example.orderandinventorysystem.R;
-import com.example.orderandinventorysystem.ui.invoice.InvoiceMainFragment;
+import com.example.orderandinventorysystem.ui.bill.add_new_bill;
 import com.example.orderandinventorysystem.ui.invoice.add_new_invoice;
-import com.example.orderandinventorysystem.ui.pack.PackageMain;
-import com.example.orderandinventorysystem.ui.payment.PaymentMain;
-import com.example.orderandinventorysystem.ui.sales.SalesOrderMainFragment;
+import com.example.orderandinventorysystem.ui.sales.add_sales_orders;
+import com.example.orderandinventorysystem.ui.staff.loginStaff;
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 public class DashboardFragment extends Fragment {
 
@@ -38,7 +31,7 @@ public class DashboardFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), PaymentMain.class));
+                startActivity(new Intent(getContext(), loginStaff.class));
             }
         });
         FloatingActionButton fab2 = root.findViewById(R.id.invFB);
@@ -52,14 +45,14 @@ public class DashboardFragment extends Fragment {
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), SalesOrderMainFragment.class));
+                startActivity(new Intent(getContext(), add_sales_orders.class));
             }
         });
         FloatingActionButton fab4 = root.findViewById(R.id.billFB);
         fab4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), PackageMain.class));
+                startActivity(new Intent(getContext(), add_new_bill.class));
             }
         });
         return root;

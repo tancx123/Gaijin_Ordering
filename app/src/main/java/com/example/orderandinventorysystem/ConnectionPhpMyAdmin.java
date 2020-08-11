@@ -11,11 +11,9 @@ import java.sql.SQLException;
 public class ConnectionPhpMyAdmin {
     String classs = "com.mysql.jdbc.Driver";
 
-    String url = "jdbc:mysql://10.0.2.2/mmsr";
+    String url = "jdbc:mysql://10.0.2.2/gaijin";
     String un = "root";
     String password = "";
-
-
 
     @SuppressLint("NewApi")
     public Connection CONN() {

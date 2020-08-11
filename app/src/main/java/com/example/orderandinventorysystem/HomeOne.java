@@ -26,7 +26,6 @@ public class HomeOne extends AppCompatActivity {
         setContentView(R.layout.activity_home_one);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setElevation(0);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

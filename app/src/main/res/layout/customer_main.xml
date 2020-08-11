@@ -114,12 +114,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                 <TextView
-                    android:id="@+id/sales_order_date"
+                    android:id="@+id/phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="30 Jul 2020"
+                    android:text="04-1231231"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -148,16 +148,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
-                    android:id="@+id/payment_method"
+                    android:id="@+id/mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Cash"
+                    android:text="012-1231231"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/sales_order_date" />
+                    app:layout_constraintTop_toBottomOf="@+id/phone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,6 +194,84 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1212, Lorong Abu, Taman Abu"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <!-- first element of the row-->
+                    <TextView
+
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="abu@abu.com"
+                        android:textColor="#000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp">
 

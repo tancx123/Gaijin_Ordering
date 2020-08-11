@@ -1,11 +1,12 @@
 package com.example.orderandinventorysystem.Model;
 
-public class Customer {
+import java.io.Serializable;
 
-    private String custName, icNo, companyName, email, phone, mobile;
-    private char custType, gender;
+public class Customer implements Serializable {
 
-    public Customer(String custName, String icNo, String companyName, String email, String phone, String mobile, char custType, char gender) {
+    private String custName, icNo, companyName, email, phone, mobile, custType, gender, address;
+
+    public Customer(String custName, String icNo, String email, String phone, String mobile, String companyName, String gender, String custType, String address) {
         this.custName = custName;
         this.icNo = icNo;
         this.companyName = companyName;
@@ -14,6 +15,15 @@ public class Customer {
         this.mobile = mobile;
         this.custType = custType;
         this.gender = gender;
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCustName() {
@@ -64,19 +74,19 @@ public class Customer {
         this.mobile = mobile;
     }
 
-    public char getCustType() {
+    public String getCustType() {
         return custType;
     }
 
-    public void setCustType(char custType) {
+    public void setCustType(String custType) {
         this.custType = custType;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 }

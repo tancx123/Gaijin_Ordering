@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/invoice_main_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:elevation="0dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.invoice.add_new_invoice"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_background_layout">
+
+            <TextView
+                android:id="@+id/group_sales_order_info"
+                android:layout_width="0dp"
+                android:layout_height="520dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_customer_name_title_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="24dp"
+                android:text="Customer Name *"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/group_sales_order_info"
+                app:layout_constraintTop_toTopOf="@+id/group_sales_order_info" />
+
+            <EditText
+                android:id="@+id/text_customer_name_input_sales"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="Customer Name"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_customer_name_title_sales"
+                app:layout_constraintTop_toBottomOf="@+id/text_customer_name_title_sales" />
+
+            <TextView
+                android:id="@+id/text_sales_order_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Sales Order# *"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_customer_name_input_sales"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_customer_name_input_sales"
+                app:layout_constraintTop_toBottomOf="@+id/text_customer_name_input_sales" />
+
+            <EditText
+                android:id="@+id/text_sales_order_input"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="SO-0003"
+                app:layout_constraintEnd_toEndOf="@+id/text_sales_order_num"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_sales_order_num"
+                app:layout_constraintTop_toBottomOf="@+id/text_sales_order_num" />
+
+            <TextView
+                android:id="@+id/text_reference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Reference#"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_sales_order_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_sales_order_input"
+                app:layout_constraintTop_toBottomOf="@+id/text_sales_order_input" />
+
+            <EditText
+                android:id="@+id/text_reference_input"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="@+id/text_reference"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_reference"
+                app:layout_constraintTop_toBottomOf="@+id/text_reference" />
+
+            <TextView
+                android:id="@+id/text_sales_order_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Sales Order Date"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_reference_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_reference_input"
+                app:layout_constraintTop_toBottomOf="@+id/text_reference_input" />
+
+            <EditText
+                android:id="@+id/text_sales_order_date_input"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="01 AUG 2019"
+                app:layout_constraintEnd_toEndOf="@+id/text_sales_order_date"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_sales_order_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_sales_order_date" />
+
+            <TextView
+                android:id="@+id/text_expected_shipment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Expected Shipment Date"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_sales_order_date_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_sales_order_date_input"
+                app:layout_constraintTop_toBottomOf="@+id/text_sales_order_date_input" />
+
+            <EditText
+                android:id="@+id/text_due_date_input"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="dd MM yyyy"
+                app:layout_constraintEnd_toEndOf="@+id/text_expected_shipment_date"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_expected_shipment_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_expected_shipment_date" />
+
+            <TextView
+                android:id="@+id/group_item_info"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_sales_order_info" />
+
+            <Button
+                android:id="@+id/add_sales_line_item_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="Add Line Item"
+                app:layout_constraintBottom_toBottomOf="@+id/group_item_info"
+                app:layout_constraintEnd_toEndOf="@+id/group_item_info"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/group_item_info"
+                app:layout_constraintTop_toTopOf="@+id/group_item_info" />
+
+            <TextView
+                android:id="@+id/group_terms_condition"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_item_info"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/text_customer_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                android:text="Customer Notes"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/group_terms_condition"
+                app:layout_constraintTop_toTopOf="@+id/group_terms_condition" />
+
+            <EditText
+                android:id="@+id/text_customer_note_input"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="Thanks for you business"
+                app:layout_constraintEnd_toEndOf="@+id/text_customer_note"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_customer_note"
+                app:layout_constraintTop_toBottomOf="@+id/text_customer_note" />
+
+            <TextView
+                android:id="@+id/text_terms_condition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="Terms and Conditions"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_customer_note_input"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_customer_note_input"
+                app:layout_constraintTop_toBottomOf="@+id/text_customer_note_input" />
+
+            <EditText
+                android:id="@+id/textView20"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="@+id/text_terms_condition"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_terms_condition"
+                app:layout_constraintTop_toBottomOf="@+id/text_terms_condition" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
