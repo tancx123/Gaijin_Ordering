@@ -1,58 +1,47 @@
-package com.example.orderandinventorysystem.ui.customer;
+package com.example.orderandinventorysystem.ui.sales;
 
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.orderandinventorysystem.Model.Customer;
+import com.example.orderandinventorysystem.Model.ItemOrder;
 import com.example.orderandinventorysystem.R;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapter.ViewHolder> {
+public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdapter.ViewHolder> {
 
-    private List<Customer> mData;
+    private List<ItemOrder> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    private List<Customer> mDataAll;
 
     // data is passed into the constructor
-    public CustomerListAdapter(Context context, List<Customer> data) {
+    public ItemOrderListAdapter(Context context, List<ItemOrder> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-        this.mDataAll = data;
     }
 
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.customer_list_layout, parent, false);
+        View view = mInflater.inflate(R.layout.item_order_list_layout, parent, false);
         return new ViewHolder(view);
-    }
 
-    public void filterList(ArrayList<Customer> filteredList) {
-        mData = filteredList;
-        notifyDataSetChanged();
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Customer cust = mData.get(position);
-        holder.myTextView.setText(cust.getCustName());
-        holder.comp.setText(cust.getCompanyName());
-        holder.phone.setText(cust.getPhone());
-        holder.mobile.setText(cust.getMobile());
-        holder.id.setText(cust.getCustID());
+
+        ItemOrder itemOrder = mData.get(position);
+        holder.name.setText(itemOrder.getItemName());
+        holder.price_quantity.setText(String.format("%d x %.2f", itemOrder.getQuantity(), itemOrder.getSellPrice()));
+        holder.price.setText(String.format("%.2f", itemOrder.getTotal()));
     }
 
     // total number of rows
@@ -63,26 +52,24 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView, comp, phone, mobile, id;
+        TextView name, price_quantity, price;
 
         ViewHolder(View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.cust_id);
-            myTextView = itemView.findViewById(R.id.cust_name_view);
-            comp = itemView.findViewById(R.id.comp_name_view);
-            phone = itemView.findViewById(R.id.phone_view);
-            mobile = itemView.findViewById(R.id.mobile_view);
+            name = itemView.findViewById(R.id.item_name);
+            price_quantity = itemView.findViewById(R.id.item_quantity_price);
+            price = itemView.findViewById(R.id.item_price);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition(), id.getText().toString(), myTextView.getText().toString());
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     // convenience method for getting data at click position
-    public Customer getItem(int id) {
+    public ItemOrder getItem(int id) {
         return mData.get(id);
     }
 
@@ -93,6 +80,6 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position, String id, String name);
+        void onItemClick(View view, int position);
     }
 }

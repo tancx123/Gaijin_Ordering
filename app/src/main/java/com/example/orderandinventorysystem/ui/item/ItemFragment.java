@@ -29,8 +29,8 @@ public class ItemFragment extends Fragment implements ItemListAdapter.ItemClickL
 
         View root = inflater.inflate(R.layout.fragment_item, container, false);
         ArrayList<Item> itemList = new ArrayList<>();
-        itemList.add(new Item("Machine A", "S228378VJWU232", "pcs", "Good machine", 13.00, 5.00));
-        itemList.add(new Item("Machine B", "S88KDMWIH12312", "box", "Haha", 120.00, 100.00));
+        itemList.add(new Item("Machine A", "S228378VJWU232", "pcs", "Good machine", 0,13.00, 5.00));
+        itemList.add(new Item("Machine B", "S88KDMWIH12312", "box", "Haha", 0,120.00, 100.00));
 
         RecyclerView recyclerView = root.findViewById(R.id.item_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -42,7 +42,7 @@ public class ItemFragment extends Fragment implements ItemListAdapter.ItemClickL
     }
 
     @Override
-    public void onItemClick(View view, int position) {
+    public void onItemClick(View view, int position, String id, String name, double price) {
         startActivity(new Intent(getContext(), ItemMain.class));
     }
 }

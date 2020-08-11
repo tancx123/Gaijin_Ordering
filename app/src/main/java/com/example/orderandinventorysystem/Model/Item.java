@@ -2,17 +2,18 @@ package com.example.orderandinventorysystem.Model;
 
 public class Item {
 
-    private String itemName, itemSKU, itemUnit, itemDesc;
+    private String itemName, itemID, itemUnit, itemDesc;
     private double sellPrice, costPrice;
     private int quantity = 0;
 
-    public Item(String itemName, String itemSKU, String itemUnit, String itemDesc, double sellPrice, double costPrice) {
+    public Item(String itemID, String itemName, String itemUnit, String itemDesc, int quantity, double sellPrice, double costPrice) {
         this.itemName = itemName;
-        this.itemSKU = itemSKU;
+        this.itemID = itemID;
         this.itemUnit = itemUnit;
         this.itemDesc = itemDesc;
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
+        this.quantity = quantity;
     }
 
     public int getQuantity() {
@@ -31,12 +32,12 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public String getItemSKU() {
-        return itemSKU;
+    public String getItemID() {
+        return itemID;
     }
 
-    public void setItemSKU(String itemSKU) {
-        this.itemSKU = itemSKU;
+    public void setItemID(String itemID) {
+        this.itemID = itemID;
     }
 
     public String getItemUnit() {

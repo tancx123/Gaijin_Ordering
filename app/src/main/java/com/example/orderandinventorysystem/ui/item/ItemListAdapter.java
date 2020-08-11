@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.orderandinventorysystem.Model.Customer;
 import com.example.orderandinventorysystem.Model.Item;
 import com.example.orderandinventorysystem.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -32,14 +34,21 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    public void filterList(ArrayList<Item> filteredList) {
+        mData = filteredList;
+        notifyDataSetChanged();
+    }
+
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = mData.get(position);
+        holder.id.setText(item.getItemID());
         holder.name.setText(item.getItemName());
         holder.desc.setText(item.getItemDesc());
         holder.quantity.setText(String.format("%d", item.getQuantity()));
         holder.unit.setText(item.getItemUnit());
+        holder.price.setText(Double.toString(item.getSellPrice()));
     }
 
     // total number of rows
@@ -50,20 +59,22 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, desc, quantity, unit;
+        TextView id, name, desc, quantity, unit, price;
 
         ViewHolder(View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.item_id);
             name = itemView.findViewById(R.id.item_name);
             desc = itemView.findViewById(R.id.item_desc);
             quantity = itemView.findViewById(R.id.item_quantity);
             unit = itemView.findViewById(R.id.item_unit);
+            price = itemView.findViewById(R.id.price);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition(), id.getText().toString(), name.getText().toString(), Double.parseDouble(price.getText().toString()));
         }
     }
 
@@ -79,6 +90,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position, String id, String name, double price);
     }
 }

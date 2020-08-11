@@ -57,20 +57,31 @@
 
         <EditText
             android:id="@+id/text_item_input_sales"
-            android:layout_width="250dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:hint="Start typing to select item"
-            app:layout_constraintEnd_toEndOf="@+id/text_item_sales"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_item_sales"
             app:layout_constraintTop_toBottomOf="@+id/text_item_sales" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="5dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/text_item_input_sales"
+            app:layout_constraintStart_toStartOf="@+id/text_item_input_sales"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_input_sales" />
+
         <TextView
-            android:id="@+id/text_description_sales"
+            android:id="@+id/text_quantity_sales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Description"
+            android:layout_marginTop="12dp"
+            android:text="Quantity *"
             android:textColor="#000000"
             android:textColorHighlight="#FFFFFF"
             android:textSize="18sp"
@@ -78,45 +89,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/text_item_input_sales"
             app:layout_constraintTop_toBottomOf="@+id/text_item_input_sales" />
-
-        <EditText
-            android:id="@+id/text_description_input_sales"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="Add description for your item"
-            app:layout_constraintEnd_toEndOf="@+id/text_description_sales"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_description_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_description_sales" />
-
-        <TextView
-            android:id="@+id/text_quantity_sales"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Quantity *"
-            android:textColor="#000000"
-            android:textColorHighlight="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/text_description_input_sales"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_description_input_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_description_input_sales" />
-
-        <TextView
-            android:id="@+id/text_rate_sales"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="30dp"
-            android:text="Rate *"
-            android:textColor="#000000"
-            android:textColorHighlight="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
-            app:layout_constraintStart_toEndOf="@+id/text_quantity_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_description_input_sales" />
 
         <EditText
             android:id="@+id/text_quantity_input_sales"
@@ -127,40 +99,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/text_quantity_sales"
             app:layout_constraintTop_toBottomOf="@+id/text_quantity_sales" />
-
-        <EditText
-            android:id="@+id/text_rate_input_sales"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/text_rate_sales"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_rate_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_rate_sales" />
-
-        <TextView
-            android:id="@+id/text_tax_sales"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="Tax"
-            android:textColor="#000000"
-            android:textColorHighlight="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_quantity_input_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_quantity_input_sales" />
-
-        <TextView
-            android:id="@+id/text_tax_input_sales"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Tax (Drop down List)"
-            app:layout_constraintEnd_toEndOf="@+id/group_add_sales_line_item"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/text_tax_sales"
-            app:layout_constraintTop_toBottomOf="@+id/text_tax_sales" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

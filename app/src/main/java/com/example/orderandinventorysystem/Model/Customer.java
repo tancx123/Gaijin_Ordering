@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
 
-    private String custName, icNo, companyName, email, phone, mobile, custType, gender, address;
+    private String custID, custName, icNo, companyName, email, phone, mobile, custType, gender, address;
 
-    public Customer(String custName, String icNo, String email, String phone, String mobile, String companyName, String gender, String custType, String address) {
+    public Customer(String custID, String custName, String icNo, String email, String phone, String mobile, String companyName, String gender, String custType, String address) {
+        this.custID = custID;
         this.custName = custName;
         this.icNo = icNo;
         this.companyName = companyName;
@@ -16,6 +17,14 @@ public class Customer implements Serializable {
         this.custType = custType;
         this.gender = gender;
         this.address = address;
+    }
+
+    public String getCustID() {
+        return custID;
+    }
+
+    public void setCustID(String custID) {
+        this.custID = custID;
     }
 
     public String getAddress() {

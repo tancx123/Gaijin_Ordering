@@ -66,6 +66,7 @@ public class CustomerMain extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 // Handle item selection
         switch (item.getItemId()) {
+
             case R.id.delete: {
                 DeleteCust deleteCust = new DeleteCust(cust.getIcNo());
                 deleteCust.execute("");

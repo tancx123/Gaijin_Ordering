@@ -40,7 +40,7 @@ public class new_customer extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.save: {
                 //constructor
-                Customer cust = new Customer("1", "2", "3", "4", "5", "6", "7","8", "9");
+                Customer cust = new Customer("1","1", "2", "3", "4", "5", "6", "7","8", "9");
                 AddCust addCust = new AddCust(cust);
                 addCust.execute("");
                 this.finish();
