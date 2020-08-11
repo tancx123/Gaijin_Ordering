@@ -12,12 +12,9 @@ UI Done
 - Items (Nav Drawer)
 - Sales Orders (Nav Drawer)
 - Invoices (Nav Drawer)
-
-
-UI Left
--------
+- Login
+- Staff Management (CRUD)
 - Sales Order (Add / Edit)
-- Payment (Add / Edit)
 - Invoice (Add / Edit)
 - Package (Add / Edit)
 - Shipment (Add / Edit)
@@ -30,6 +27,10 @@ UI Left
 - Vendors (Nav Drawer)
 - Purchase Orders (Nav Drawer)
 - Bills (Nav Drawer)
+
+UI Left
+-------
+- Item (Add / Edit)
+- Payment (Add / Edit)
 - Sales Report
-- Login
-- Staff Management (CRUD)
+
