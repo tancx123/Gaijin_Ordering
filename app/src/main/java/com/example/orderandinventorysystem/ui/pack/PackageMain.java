@@ -78,9 +78,8 @@ public class PackageMain extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 4) {
-            setResult(2);
+            setResult(3);
             finish();
-            //setResult(2);
             Intent intent = new Intent(this, PackageMain.class);
             intent.putExtra("Package", intentPackageID);
             startActivityForResult(intent, 3);
@@ -102,7 +101,7 @@ public class PackageMain extends AppCompatActivity {
             case R.id.delivered: {
                 MarkDelivered markDelivered = new MarkDelivered();
                 markDelivered.execute("");
-                setResult(2);
+                setResult(3);
                 finish();
                 Intent intent = new Intent(this, PackageMain.class);
                 intent.putExtra("Package", intentPackageID);
@@ -115,7 +114,7 @@ public class PackageMain extends AppCompatActivity {
                 if (shipCheck) {
                     DeleteShipment deleteShipment = new DeleteShipment();
                     deleteShipment.execute("");
-                    setResult(2);
+                    setResult(3);
                     finish();
                     Intent intent = new Intent(this, PackageMain.class);
                     intent.putExtra("Package", intentPackageID);
@@ -126,11 +125,9 @@ public class PackageMain extends AppCompatActivity {
 
                     DeletePack deletePack = new DeletePack();
                     deletePack.execute("");
-                    setResult(2);
+                    setResult(3);
                     finish();
-                    Intent intent = new Intent(this, SalesOrderMainFragment.class);
-                    intent.putExtra("Sales", pack.getSalesID());
-                    startActivity(intent);
+
                 }
 
 
@@ -144,11 +141,9 @@ public class PackageMain extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        setResult(2);
+        setResult(3);
         this.finish();
-        Intent intent = new Intent(this, SalesOrderMainFragment.class);
-        intent.putExtra("Sales", pack.getSalesID());
-        startActivity(intent);
+
     }
 
     @Override
@@ -194,7 +189,7 @@ public class PackageMain extends AppCompatActivity {
 
                         ioList.add(new ItemOrder(rs.getString(1), rs.getString(2),
                                 rs.getString(3), rs.getDouble(4),
-                                rs.getDouble(5), rs.getInt(6)));
+                                rs.getDouble(5), rs.getInt(6), rs.getDouble(7)));
                         totalQuantity += rs.getInt(6);
                     }
 

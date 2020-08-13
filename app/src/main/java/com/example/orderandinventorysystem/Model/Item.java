@@ -4,9 +4,9 @@ public class Item {
 
     private String itemName, itemID, itemUnit, itemDesc;
     private double sellPrice, costPrice;
-    private int quantity = 0;
+    private int quantity = 0, quantityPHY = 0;
 
-    public Item(String itemID, String itemName, String itemUnit, String itemDesc, int quantity, double sellPrice, double costPrice) {
+    public Item(String itemID, String itemName, String itemUnit, String itemDesc, int quantity, int quantityPHY, double sellPrice, double costPrice) {
         this.itemName = itemName;
         this.itemID = itemID;
         this.itemUnit = itemUnit;
@@ -14,6 +14,15 @@ public class Item {
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
         this.quantity = quantity;
+        this.quantityPHY = quantityPHY;
+    }
+
+    public int getQuantityPHY() {
+        return quantityPHY;
+    }
+
+    public void setQuantityPHY(int quantityPHY) {
+        this.quantityPHY = quantityPHY;
     }
 
     public int getQuantity() {

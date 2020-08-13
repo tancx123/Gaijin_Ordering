@@ -32,7 +32,6 @@
         <activity android:name=".ui.customer.CustomerMain"/>
         <activity android:name=".ui.item.ItemMain"/>
         <activity android:name=".ui.invoice.add_new_invoice"/>
-        <activity android:name=".ui.invoice.add_line_item"/>
         <activity android:name=".ui.purchase.PurchaseMain"/>
         <activity android:name=".ui.vendor.VendorMain"/>
         <activity android:name=".ui.purchase.add_new_purchase"/>
@@ -48,6 +47,7 @@
         <activity android:name=".ui.staff.StaffManagementMainMenu" />
         <activity android:name=".ui.staff.viewStaff" />
         <activity android:name=".ui.sales.edit_sales_orders"/>
+        <activity android:name=".ui.invoice.edit_new_invoice"/>
     </application>
 
 </manifest>

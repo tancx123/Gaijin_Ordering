@@ -127,6 +127,8 @@ public class Sales_Packages extends Fragment {
                 packStatus.setText(pack.getPackStatus());
                 packDate.setText(pack.getPackDate());
                 img.setVisibility(View.VISIBLE);
+                TextView click = root.findViewById(R.id.click);
+                click.setVisibility(View.VISIBLE);
             }
 
             if (shipCheck) {
@@ -135,6 +137,8 @@ public class Sales_Packages extends Fragment {
                 tb2.setVisibility(View.VISIBLE);
                 TextView shipDate = root.findViewById(R.id.shipmentDate);
                 shipDate.setText(shipment.getShipDate());
+                TextView click = root.findViewById(R.id.click);
+                click.setVisibility(View.VISIBLE);
             }
         }
     }

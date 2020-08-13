@@ -1,7 +1,6 @@
 package com.example.orderandinventorysystem.ui.sales;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,14 @@ import com.example.orderandinventorysystem.R;
 
 import java.util.List;
 
-public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdapter.ViewHolder> {
+public class ItemOrderListAdapterTwo extends RecyclerView.Adapter<ItemOrderListAdapterTwo.ViewHolder> {
 
     private List<ItemOrder> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public ItemOrderListAdapter(Context context, List<ItemOrder> data) {
+    public ItemOrderListAdapterTwo(Context context, List<ItemOrder> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -29,7 +28,7 @@ public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdap
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_order_list_layout, parent, false);
+        View view = mInflater.inflate(R.layout.item_order_list_layout_2, parent, false);
         return new ViewHolder(view);
 
     }

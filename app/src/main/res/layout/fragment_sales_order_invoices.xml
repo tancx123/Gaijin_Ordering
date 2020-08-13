@@ -15,6 +15,13 @@
 
     </ImageButton>
 
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/invoice_button"
+        android:visibility="gone"
+        ></ImageButton>
+
     <TableLayout
         android:id="@+id/f_table"
         android:layout_width="match_parent"
@@ -33,11 +40,13 @@
 
             <!-- first element of the row-->
             <TextView
-
+                android:visibility="invisible"
+                android:id="@+id/click"
+                android:text="Click for more >"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="COMPLETED"
+                android:text="NO INVOICE FOUND"
                 android:textAlignment="viewEnd"
                 android:textColor="#4CAF50"
                 android:textSize="14sp" />
@@ -55,7 +64,8 @@
         </TableRow>
 
         <TableRow
-
+            android:id="@+id/invRow1"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -86,7 +96,8 @@
         </TableRow>
 
         <TableRow
-
+            android:id="@+id/invRow2"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -112,7 +123,8 @@
         </TableRow>
 
         <TableRow
-
+            android:id="@+id/invRow3"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">

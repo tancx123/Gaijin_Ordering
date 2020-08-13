@@ -35,7 +35,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cons"
                 android:layout_width="match_parent"
-                android:layout_height="225dp"
+                android:layout_height="204dp"
                 android:background="@color/cardview_dark_background"
                 android:orientation="vertical">
 
@@ -110,29 +110,6 @@
                     android:textColor="#FFFFFF"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sales_order_price" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Payment Mode:"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-                <TextView
-                    android:id="@+id/payment_method"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Cash"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toBottomOf="@+id/sales_order_date" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,99 +204,7 @@
 
                 </TableRow>
 
-                <TableRow
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Invoice Amount:" />
-
-                    <TextView
-                        android:id="@+id/invoice_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="MYR20.00"
-                        android:textColor="@android:color/black" />
-
-
-                </TableRow>
-
-
-            </TableLayout>
-
-            <TableLayout
-                android:id="@+id/f_table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:background="#FFFFFF"
-                android:padding="15dp"
-                android:stretchColumns="1">
-
-                <!-- first row of the table layout-->
-                <TableRow
-
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <!-- first element of the row-->
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="More Information"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
-
-                </TableRow>
-
-                <TableRow
-
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="20dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp">
-
-                    <!-- first element of the row-->
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Deposit To"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
-
-                </TableRow>
-
-                <TableRow
-
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp">
-
-                    <!-- first element of the row-->
-                    <TextView
-
-                        android:id="@+id/deposit_method"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Petty Cash"
-                        android:textColor="#000"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                </TableRow>
             </TableLayout>
 
         </LinearLayout>

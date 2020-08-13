@@ -53,7 +53,7 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
     RecyclerView recyclerView, recyclerView2;
     EditText editText;
     TextView date;
-    double total=0;
+    double total=0, subtotal=0, discountTotal=0;
     boolean checkCustName = false;
 
     @Override
@@ -239,10 +239,14 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
                 if (check == false)
                     ioList.add(io);
 
-                total += io.getTotal();
+                subtotal += io.getTotal();
+                discountTotal +=  (io.getTotal() * io.getDiscount()/100);
+                total = subtotal - discountTotal;
                 TextView subtotalTV = findViewById(R.id.sales_order_sub_total);
                 TextView totalTV = findViewById(R.id.sales_order_total);
-                subtotalTV.setText(String.format("MYR%.2f", total));
+                TextView discount = findViewById(R.id.discountTotal);
+                discount.setText(String.format("- MYR%.2f", discountTotal));
+                subtotalTV.setText(String.format("MYR%.2f", subtotal));
                 totalTV.setText(String.format("MYR%.2f", total));
                 recyclerView2.setLayoutManager(new LinearLayoutManager(this));
                 adapter2 = new ItemOrderListAdapter(this, ioList);
@@ -265,10 +269,15 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        total -= ioList.get(itemPost).getTotal();
+                        subtotal -= ioList.get(itemPost).getTotal();
+                        discountTotal -= (ioList.get(itemPost).getTotal() * ioList.get(itemPost).getDiscount()/100);
+                        total = subtotal - discountTotal;
+
                         TextView subtotalTV = findViewById(R.id.sales_order_sub_total);
                         TextView totalTV = findViewById(R.id.sales_order_total);
-                        subtotalTV.setText(String.format("MYR%.2f", total));
+                        TextView discount = findViewById(R.id.discountTotal);
+                        discount.setText(String.format("- MYR%.2f", discountTotal));
+                        subtotalTV.setText(String.format("MYR%.2f", subtotal));
                         totalTV.setText(String.format("MYR%.2f", total));
                         ioList.remove(itemPost);
                         recyclerView2.setAdapter(adapter2);
@@ -297,9 +306,6 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
         String checkConnection = "";
         boolean isSuccess = false;
 
-        public String getLatestID() {
-            return latestID;
-        }
 
         @Override
         protected void onPreExecute() {
@@ -330,8 +336,10 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
                     rs = stmt.executeQuery(query);
 
                     while (rs.next()) {
-                        ioList.add(new ItemOrder(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6)));
-                        total += rs.getDouble(5);
+                        ioList.add(new ItemOrder(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6), rs.getDouble(7)));
+                        subtotal += rs.getDouble(5);
+                        discountTotal += (rs.getDouble(5) * rs.getDouble(7)/100);
+                        total = subtotal - discountTotal;
                     }
 
                     checkConnection = "Yes";
@@ -351,7 +359,9 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
             recyclerView.setAdapter(adapter);
             TextView subtotalTV = findViewById(R.id.sales_order_sub_total);
             TextView totalTV = findViewById(R.id.sales_order_total);
-            subtotalTV.setText(String.format("MYR%.2f", total));
+            TextView discount = findViewById(R.id.discountTotal);
+            discount.setText(String.format("- MYR%.2f", discountTotal));
+            subtotalTV.setText(String.format("MYR%.2f", subtotal));
             totalTV.setText(String.format("MYR%.2f", total));
         }
     }
@@ -407,7 +417,7 @@ public class edit_sales_orders extends AppCompatActivity implements CustomerList
 
                         query = "INSERT INTO ITEMORDER VALUES ('" + sales.getSalesID() + "', '" + io.getItemID() + "', '" +
                                 io.getItemName() + "', '" + io.getSellPrice() + "', '" + io.getTotal() + "', '" +
-                                io.getQuantity() + "')";
+                                io.getQuantity() + "','" + io.getDiscount() + "')";
 
                         stmt = con.createStatement();
                         stmt.executeUpdate(query);

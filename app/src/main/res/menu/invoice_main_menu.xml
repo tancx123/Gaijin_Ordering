@@ -15,7 +15,12 @@
 
     <item
         android:id="@+id/delete"
-        android:title="Delete"
+        android:title="Delete Invoice"
+        />
+
+    <item
+        android:id="@+id/payment"
+        android:title="Mark As Paid"
         />
 
 </menu>

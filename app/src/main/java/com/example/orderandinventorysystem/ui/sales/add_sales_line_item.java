@@ -44,7 +44,7 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
     RecyclerView recyclerView;
     String itemID, itemName;
     double itemPrice;
-    EditText editText, quantityEditText;
+    EditText editText, quantityEditText, discountEditText;
     boolean checkItemValid = false;
 
     @Override
@@ -67,6 +67,7 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
         adapter.setClickListener(this);
         editText = findViewById(R.id.text_item_input_sales);
         quantityEditText = findViewById(R.id.text_quantity_input_sales);
+        discountEditText = findViewById(R.id.discount);
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -134,9 +135,9 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
         switch (item.getItemId()) {
             case R.id.done: {
 
-                if(checkItemValid && !TextUtils.isEmpty(quantityEditText.getText())){
+                if(checkItemValid && !TextUtils.isEmpty(discountEditText.getText()) && !TextUtils.isEmpty(quantityEditText.getText())){
 
-                    ItemOrder itemOrder = new ItemOrder("0", itemID, itemName, itemPrice, Integer.parseInt(quantityEditText.getText().toString()));
+                    ItemOrder itemOrder = new ItemOrder("0", itemID, itemName, itemPrice, Integer.parseInt(quantityEditText.getText().toString()), Double.parseDouble(discountEditText.getText().toString()));
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("itemOrder", itemOrder);
                     setResult(Activity.RESULT_OK,returnIntent);
@@ -148,6 +149,8 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
                         editText.setError("Invalid item name !");
                     if (TextUtils.isEmpty(quantityEditText.getText()))
                         quantityEditText.setError("Quantity is required !");
+                    if (TextUtils.isEmpty(discountEditText.getText()))
+                        discountEditText.setError("Discount is required !");
                 }
                 //constructor
 
@@ -200,7 +203,7 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
                     ResultSet rs = stmt.executeQuery(query);
 
                     while (rs.next()) {
-                        itemList.add(new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getDouble(6), rs.getDouble(7)));
+                        itemList.add(new Item(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5),rs.getInt(6), rs.getDouble(7), rs.getDouble(8)));
                         Log.d("Success", rs.getString(1));
                     }
 

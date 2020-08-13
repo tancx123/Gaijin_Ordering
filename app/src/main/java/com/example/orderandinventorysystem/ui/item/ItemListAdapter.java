@@ -46,9 +46,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
         holder.id.setText(item.getItemID());
         holder.name.setText(item.getItemName());
         holder.desc.setText(item.getItemDesc());
-        holder.quantity.setText(String.format("%d", item.getQuantity()));
-        holder.unit.setText(item.getItemUnit());
-        holder.price.setText(Double.toString(item.getSellPrice()));
+        holder.price.setText(String.format("%.2f", item.getSellPrice()));
     }
 
     // total number of rows
@@ -59,15 +57,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView id, name, desc, quantity, unit, price;
+        TextView id, name, desc, price;
 
         ViewHolder(View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.item_id);
             name = itemView.findViewById(R.id.item_name);
             desc = itemView.findViewById(R.id.item_desc);
-            quantity = itemView.findViewById(R.id.item_quantity);
-            unit = itemView.findViewById(R.id.item_unit);
             price = itemView.findViewById(R.id.price);
             itemView.setOnClickListener(this);
         }

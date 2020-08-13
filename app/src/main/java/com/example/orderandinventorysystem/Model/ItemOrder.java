@@ -5,25 +5,35 @@ import java.io.Serializable;
 public class ItemOrder implements Serializable {
 
     private String orderID, itemID, itemName;
-    private double sellPrice, total;
+    private double sellPrice, total, discount;
     private int quantity;
 
-    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, int quantity) {
+    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, int quantity, double discount) {
         this.orderID = orderID;
         this.itemID = itemID;
         this.itemName = itemName;
         this.sellPrice = sellPrice;
         this.quantity = quantity;
         total = sellPrice * quantity;
+        this.discount = discount;
     }
 
-    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, double total, int quantity) {
+    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, double total, int quantity, double discount) {
         this.orderID = orderID;
         this.itemID = itemID;
         this.itemName = itemName;
         this.sellPrice = sellPrice;
         this.quantity = quantity;
         this.total = total;
+        this.discount = discount;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public String getOrderID() {

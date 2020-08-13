@@ -15,8 +15,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.orderandinventorysystem.Adapter.SectionsPagerAdapter;
 import com.example.orderandinventorysystem.ConnectionPhpMyAdmin;
+import com.example.orderandinventorysystem.Model.Invoice;
 import com.example.orderandinventorysystem.Model.ItemOrder;
 import com.example.orderandinventorysystem.Model.Sales;
+import com.example.orderandinventorysystem.ui.invoice.InvoiceMainFragment;
+import com.example.orderandinventorysystem.ui.invoice.add_new_invoice;
 import com.example.orderandinventorysystem.ui.pack.PackageMain;
 import com.google.android.material.tabs.TabLayout;
 import com.example.orderandinventorysystem.R;
@@ -36,7 +39,7 @@ public class SalesOrderMainFragment extends AppCompatActivity {
     TabLayout tabLayout;
     ArrayList<ItemOrder> ioList;
     Sales sales;
-    boolean packCheck=false, shipCheck=false;
+    boolean packCheck=false, invoiceCheck=false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +106,14 @@ public class SalesOrderMainFragment extends AppCompatActivity {
                 return true;
             }
 
+            case R.id.create_invoice: {
+
+                Intent intent = new Intent(this, add_new_invoice.class);
+                intent.putExtra("SalesEdit", sales);
+                startActivityForResult(intent, 11);
+                return true;
+            }
+
             case R.id.delete: {
                 DeleteSales deleteSales = new DeleteSales(sales.getSalesID());
                 deleteSales.execute("");
@@ -120,6 +131,27 @@ public class SalesOrderMainFragment extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 2) {
             finish();
+
+        }
+
+        else if (resultCode == 3) {
+
+            Intent intent = new Intent(this, SalesOrderMainFragment.class);
+            intent.putExtra("Sales", sales.getSalesID());
+            finish();
+            startActivity(intent);
+        }
+
+        else if (resultCode == 4) {
+
+            Intent intent = new Intent(this, SalesOrderMainFragment.class);
+            intent.putExtra("Sales", sales.getSalesID());
+            finish();
+            startActivity(intent);
+
+            intent = new Intent(this, InvoiceMainFragment.class);
+            intent.putExtra("Invoice", data.getExtras().getString("Invoice"));
+            startActivityForResult(intent, 16);
         }
     }
 
@@ -127,8 +159,8 @@ public class SalesOrderMainFragment extends AppCompatActivity {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new Sales_Details(), "DETAILS");
-        adapter.addFragment(new Sales_Packages(), "PACKAGES");
-        adapter.addFragment(new Sales_Invoices(), "INVOICES");
+        adapter.addFragment(new Sales_Packages(), "PACKAGE");
+        adapter.addFragment(new Sales_Invoices(), "INVOICE");
 
         viewPager.setAdapter(adapter);
     }
@@ -187,15 +219,15 @@ public class SalesOrderMainFragment extends AppCompatActivity {
                                 rs.getString(3), rs.getString(4),
                                 rs.getDouble(6), rs.getString(5));
                     }
-//                    query = " SELECT * FROM ITEMORDER WHERE orderID ='" + salesID + "'";
-//                    stmt = con.createStatement();
-//                    rs = stmt.executeQuery(query);
-//                    while (rs.next()) {
-//
-//                        ioListDB.add(new ItemOrder(rs.getString(1), rs.getString(2),
-//                                rs.getString(3), rs.getDouble(4),
-//                                rs.getDouble(5), rs.getInt(6)));
-//                    }
+
+                    query = " SELECT * FROM INVOICE WHERE salesID ='" + salesID + "'";
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery(query);
+                    if (rs.next()) {
+
+                        invoiceCheck = true;
+
+                    }
 
                     query = " SELECT * FROM PACKAGE WHERE salesID ='" + salesID + "'";
                     stmt = con.createStatement();
@@ -241,13 +273,38 @@ public class SalesOrderMainFragment extends AppCompatActivity {
             TextView salesStatus = findViewById(R.id.sales_order_status);
             salesStatus.setText(sales.getSalesStatus());
 
-            Log.d("HAHA", Boolean.toString(packCheck));
+            if(sales.getSalesStatus().equals("Removed")) {
+
+                MenuItem menuItem = menu1.findItem(R.id.create_package);
+                menuItem.setVisible(false);
+                MenuItem menuItem2 = menu1.findItem(R.id.delete);
+                menuItem2.setVisible(false);
+                menuItem2 = menu1.findItem(R.id.edit_sales);
+                menuItem2.setVisible(false);
+                menuItem = menu1.findItem(R.id.create_invoice);
+                menuItem.setVisible(false);
+            }
+
             if(packCheck) {
                 MenuItem menuItem = menu1.findItem(R.id.create_package);
                 menuItem.setVisible(false);
                 MenuItem menuItem2 = menu1.findItem(R.id.delete);
                 menuItem2.setVisible(false);
+                menuItem2 = menu1.findItem(R.id.edit_sales);
+                menuItem2.setVisible(false);
             }
+
+            if(invoiceCheck) {
+
+                MenuItem menuItem = menu1.findItem(R.id.create_invoice);
+                menuItem.setVisible(false);
+                MenuItem menuItem2 = menu1.findItem(R.id.delete);
+                menuItem2.setVisible(false);
+                menuItem = menu1.findItem(R.id.edit_sales);
+                menuItem.setVisible(false);
+            }
+
+
         }
     }
 
@@ -277,12 +334,8 @@ public class SalesOrderMainFragment extends AppCompatActivity {
                     checkConnection = "Please check your internet connection.";
                 } else {
 
-                    String query = " DELETE FROM SALES WHERE SALESID ='" + salesID + "'";
+                    String query = " UPDATE SALES SET SALESSTATUS='Removed' WHERE SALESID ='" + salesID + "'";
                     Statement stmt = con.createStatement();
-                    stmt.executeUpdate(query);
-
-                    query = " DELETE FROM ITEMORDER WHERE ORDERID ='" + salesID + "'";
-                    stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
                     Log.d("Success", "Done");

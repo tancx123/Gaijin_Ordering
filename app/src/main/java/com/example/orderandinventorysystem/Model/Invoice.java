@@ -1,17 +1,28 @@
 package com.example.orderandinventorysystem.Model;
 
-public class Invoice {
+import java.io.Serializable;
 
-    private String invID, salesID, invCustName, invDate, invStatus;
+public class Invoice implements Serializable {
+
+    private String invID, salesID, invCustName, invDate, invStatus, invDueDate;
     private double invPrice;
 
-    public Invoice(String invID, String salesID, String invCustName, String invDate, String invStatus, double invPrice) {
+    public Invoice(String invID, String salesID, String invCustName, String invDate, String invStatus, double invPrice, String invDueDate) {
         this.invID = invID;
         this.salesID = salesID;
         this.invCustName = invCustName;
         this.invDate = invDate;
         this.invStatus = invStatus;
         this.invPrice = invPrice;
+        this.invDueDate = invDueDate;
+    }
+
+    public String getInvDueDate() {
+        return invDueDate;
+    }
+
+    public void setInvDueDate(String invDueDate) {
+        this.invDueDate = invDueDate;
     }
 
     public String getInvID() {

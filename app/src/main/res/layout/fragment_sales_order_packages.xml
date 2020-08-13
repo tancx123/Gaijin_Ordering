@@ -42,11 +42,14 @@
 
             <!-- first element of the row-->
             <TextView
-
+                android:visibility="invisible"
+                android:id="@+id/click"
+                android:text="Click for more >"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
 

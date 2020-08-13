@@ -30,7 +30,6 @@ public class PackageFragment extends Fragment {
                 ViewModelProviders.of(this).get(PackagesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_packages, container, false);*/
         myFragment = inflater.inflate(R.layout.fragment_packages, container,false);
-
         viewPager = myFragment.findViewById(R.id.viewpager_all);
         tabLayout = myFragment.findViewById(R.id.tabLayout);
 

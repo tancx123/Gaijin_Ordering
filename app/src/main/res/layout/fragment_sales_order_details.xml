@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"
-                android:text="Closed"
+                android:text="Confirmed"
                 android:textColor="#4CAF50"
                 android:textSize="14sp" />
 
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"
-                android:text="Invoiced"
+                android:text="Pending"
                 android:textColor="#4CAF50"
                 android:textSize="14sp" />
 
@@ -198,6 +198,38 @@
                 android:text="MYR12.00"
                 android:textAlignment="textEnd"
                 android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <!-- first element of the row-->
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="Discount"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:id="@+id/discountTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="- MYR12.00"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/holo_red_light"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 

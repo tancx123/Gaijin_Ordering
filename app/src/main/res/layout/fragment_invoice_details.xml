@@ -54,33 +54,6 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terms"
-                android:textColor="#000"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:id="@+id/invoice_term"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:text="Due on Receipt"
-                android:textColor="@android:color/black"
-                android:textSize="14sp" />
-
-        </TableRow>
-
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <!-- first element of the row-->
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Due Date"
                 android:textColor="#000"
                 android:textSize="14sp" />
@@ -105,7 +78,9 @@
         android:layout_below="@id/f_table"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        android:padding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp"
         android:stretchColumns="1">
 
         <TableRow
@@ -143,61 +118,12 @@
             android:layout_height="wrap_content"
             android:padding="5dp">
 
-
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemLine_2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Box ABC "
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:text="MYR 12.00"
-                android:textAlignment="textEnd"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:layout_span="2" />
         </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp"
-            android:paddingRight="5dp">
-
-
-            <TextView
-                android:id="@+id/item_quantity_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1.0 x MYR 12.00"
-                android:textColor="@android:color/black" />
-
-
-        </TableRow>
-
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-
-            <TextView
-                android:id="@+id/item_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is a good ABC."
-                android:textColor="@android:color/black" />
-
-
-        </TableRow>
-
 
 
     </TableLayout>
@@ -208,7 +134,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/s_table"
         android:background="#FFFFFF"
-        android:padding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
         android:stretchColumns="0">
 
         <View
@@ -261,6 +189,38 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
+                android:text="Discount"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+
+                android:id="@+id/discountTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:text="- MYR12.00"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <!-- first element of the row-->
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:text="Total"
                 android:textAlignment="textEnd"
                 android:textColor="#000"
@@ -282,68 +242,5 @@
 
         </TableRow>
 
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <!-- first element of the row-->
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:text="Payment Made"
-                android:textAlignment="textEnd"
-                android:textColor="#000"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:id="@+id/payment_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:text="(-) MYR12.00"
-                android:textAlignment="viewEnd"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-            <!-- first element of the row-->
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:text="Balance Due"
-                android:textAlignment="textEnd"
-                android:textColor="#000"
-                android:textSize="14sp" />
-
-            <TextView
-
-                android:id="@+id/balance_due"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:text="MYR0.00"
-                android:textAlignment="viewEnd"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </TableRow>
     </TableLayout>
 </RelativeLayout>
