@@ -47,6 +47,7 @@
         <activity android:name=".ui.staff.updateStaff" />
         <activity android:name=".ui.staff.StaffManagementMainMenu" />
         <activity android:name=".ui.staff.viewStaff" />
+        <activity android:name=".ui.sales.edit_sales_orders"/>
     </application>
 
 </manifest>

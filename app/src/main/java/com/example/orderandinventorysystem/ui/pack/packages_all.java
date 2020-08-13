@@ -10,11 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.orderandinventorysystem.Model.Package;
-import com.example.orderandinventorysystem.Model.Sales;
+import com.example.orderandinventorysystem.Model.Pack;
 import com.example.orderandinventorysystem.R;
-import com.example.orderandinventorysystem.ui.sales.SalesListAdapter;
-import com.example.orderandinventorysystem.ui.sales.SalesOrderMainFragment;
 
 import java.util.ArrayList;
 
@@ -27,9 +24,7 @@ public class packages_all extends Fragment implements PackageListAdapter.ItemCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_packages_all, container, false);
-        ArrayList<Package> packList = new ArrayList<>();
-        packList.add(new Package("PAC-00001", "12 May 2020", "SO-00001"));
-        packList.add(new Package("PAC-00002", "13 May 2020", "SO-00002"));
+        ArrayList<Pack> packList = new ArrayList<>();
         RecyclerView recyclerView = root.findViewById(R.id.pack_all_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new PackageListAdapter(getContext(), packList);

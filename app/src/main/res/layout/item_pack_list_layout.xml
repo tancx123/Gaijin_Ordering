@@ -31,16 +31,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/item_quantity_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_name"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="4dp"
-        android:text="1 x 20.0"
-        android:textColor="@android:color/black" />
-
-    <TextView
         android:id="@+id/item_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

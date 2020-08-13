@@ -35,9 +35,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cons"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:background="@color/cardview_dark_background"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/package_status"
@@ -57,13 +58,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/shipIDText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Shipment Order#"
                     android:textColor="#FFFFFF"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,8 +79,9 @@
                     android:text="SHP-00004"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    app:layout_constraintTop_toBottomOf="@+id/shipIDText" />
 
                 <TextView
                     android:id="@+id/package_name"
@@ -98,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Package#:"
+                    android:text="Package ID:"
                     android:textColor="#FFFFFF"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ship_id" />
@@ -115,7 +118,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <TextView
-                    android:id="@+id/payment_method"
+                    android:id="@+id/quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -139,7 +142,8 @@
                 android:stretchColumns="1">
 
                 <TableRow
-
+                    android:id="@+id/deliveredRow"
+android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
@@ -162,7 +166,8 @@
                 </TableRow>
 
                 <TableRow
-
+android:id="@+id/carrierRow"
+                    android:visibility="gone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -177,6 +182,7 @@
                         app:srcCompat="@drawable/delivery" />
 
                     <TextView
+                        android:id="@+id/shipDetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
@@ -188,7 +194,8 @@
                 </TableRow>
 
                 <TableRow
-
+android:id="@+id/shipDateRow"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingLeft="10dp"
@@ -228,6 +235,7 @@
                         app:srcCompat="@drawable/box" />
 
                     <TextView
+                        android:id="@+id/packDetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
@@ -276,7 +284,7 @@
                         app:srcCompat="@drawable/cart" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/salesDetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
@@ -333,51 +341,19 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp">
 
-
-                    <TextView
-                        android:id="@+id/item_name"
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/itemLine_2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Item A"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
+                        android:layout_span="2" />
 
-                    <TextView
-                        android:id="@+id/item_quantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="20dp"
-                        android:text="1.0"
-                        android:textAlignment="textEnd"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold" />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp">
-
-
-                    <TextView
-                        android:id="@+id/item_desc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="This is ITEM abc" />
-
-                    <TextView
-                        android:id="@+id/item_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="box"
-                        android:textAlignment="viewEnd"
-                        android:textColor="@android:color/black" />
-
-
-                </TableRow>
+                    android:paddingRight="5dp"/>
 
                 <TableRow
 

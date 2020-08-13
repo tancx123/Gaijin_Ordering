@@ -34,11 +34,6 @@ public class CustomerFragment extends Fragment implements CustomerListAdapter.It
 
     private boolean shouldRefreshOnResume = false;
 
-    public static CustomerFragment newInstance() {
-        CustomerFragment fragment = new CustomerFragment();
-        return fragment;
-    }
-
     public CustomerFragment() {
         // Required empty public constructor
     }

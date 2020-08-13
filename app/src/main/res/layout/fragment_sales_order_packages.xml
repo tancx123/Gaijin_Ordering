@@ -14,6 +14,16 @@
 
     </ImageButton>
 
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/delivery_button"
+        android:visibility="gone"
+        >
+
+
+    </ImageButton>
+
     <TableLayout
         android:id="@+id/f_table"
         android:layout_width="match_parent"
@@ -45,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="DELIVERED"
+                android:text="NO PACKAGE FOUND"
                 android:textAlignment="viewEnd"
                 android:textColor="#4CAF50"
                 android:textSize="14sp" />
@@ -53,7 +63,8 @@
         </TableRow>
 
         <TableRow
-
+            android:id="@+id/deliveryDate"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -69,7 +80,7 @@
 
             <TextView
 
-                android:id="@+id/invoice_status"
+                android:id="@+id/packDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"
@@ -80,7 +91,8 @@
         </TableRow>
 
         <TableRow
-
+            android:id="@+id/shipDate"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
@@ -96,7 +108,7 @@
 
             <TextView
 
-                android:id="@+id/shipment_status"
+                android:id="@+id/shipmentDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -43,6 +45,7 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
     String itemID, itemName;
     double itemPrice;
     EditText editText, quantityEditText;
+    boolean checkItemValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
         getSupportActionBar().setTitle("Add Line Item");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         ShowItemList showItemList = new ShowItemList();
         showItemList.execute("");
@@ -78,6 +82,11 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                boolean userChange = Math.abs(count - before) == 1;
+                if (userChange) {
+                    checkItemValid = false;
+                }
+
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -124,12 +133,24 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.done: {
+
+                if(checkItemValid && !TextUtils.isEmpty(quantityEditText.getText())){
+
+                    ItemOrder itemOrder = new ItemOrder("0", itemID, itemName, itemPrice, Integer.parseInt(quantityEditText.getText().toString()));
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("itemOrder", itemOrder);
+                    setResult(Activity.RESULT_OK,returnIntent);
+                    finish();
+
+                }else{
+
+                    if (!checkItemValid)
+                        editText.setError("Invalid item name !");
+                    if (TextUtils.isEmpty(quantityEditText.getText()))
+                        quantityEditText.setError("Quantity is required !");
+                }
                 //constructor
-                ItemOrder itemOrder = new ItemOrder(itemID, itemName, itemPrice, Integer.parseInt(quantityEditText.getText().toString()));
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("itemOrder", itemOrder);
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+
             }
 
             default:
@@ -145,7 +166,8 @@ public class add_sales_line_item extends AppCompatActivity implements ItemListAd
 
     @Override
     public void onItemClick(View view, int position, String id, String name, double price) {
-
+        editText.getText().clear();
+        checkItemValid = true;
         itemPrice = price;
         itemName = name;
         itemID = id;

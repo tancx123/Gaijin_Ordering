@@ -2,26 +2,20 @@ package com.example.orderandinventorysystem.ui.sales;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,14 +26,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.orderandinventorysystem.ConnectionPhpMyAdmin;
 import com.example.orderandinventorysystem.Model.Customer;
-import com.example.orderandinventorysystem.Model.Item;
 import com.example.orderandinventorysystem.Model.ItemOrder;
 import com.example.orderandinventorysystem.Model.Sales;
 import com.example.orderandinventorysystem.R;
-import com.example.orderandinventorysystem.ui.customer.CustomerFragment;
 import com.example.orderandinventorysystem.ui.customer.CustomerListAdapter;
-import com.example.orderandinventorysystem.ui.customer.CustomerMain;
-import com.example.orderandinventorysystem.ui.purchase.add_line_item;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,19 +40,19 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
-public class add_sales_orders extends AppCompatActivity implements CustomerListAdapter.ItemClickListener, ItemOrderListAdapter.ItemClickListener {
+public class edit_sales_orders extends AppCompatActivity implements CustomerListAdapter.ItemClickListener, ItemOrderListAdapter.ItemClickListener {
 
     RelativeLayout relativeLayout;
     private Button BtnAddLine;
     CustomerListAdapter adapter;
     ItemOrderListAdapter adapter2;
-    ArrayList<ItemOrder> ioList;
+    ArrayList<ItemOrder> ioList = new ArrayList<>();
     ArrayList<Customer> custList;
+    Sales salesEdit;
     String custID;
     RecyclerView recyclerView, recyclerView2;
     EditText editText;
     TextView date;
-    String salesLatestID;
     double total=0;
     boolean checkCustName = false;
 
@@ -73,13 +63,17 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
 
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("New Sales Order");
+        getSupportActionBar().setTitle("Edit Sales Order");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Intent intent = getIntent();
+        salesEdit = (Sales) intent.getSerializableExtra("SalesEdit");
+        ioList = new ArrayList<>();
         BtnAddLine = findViewById(R.id.add_sales_line_item_btn);
 
         custList = new ArrayList<>();
-        ioList = new ArrayList<>();
+
         recyclerView = findViewById(R.id.custSearch);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CustomerListAdapter(this, custList);
@@ -87,15 +81,17 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
         recyclerView2 = findViewById(R.id.itemLine);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         adapter2 = new ItemOrderListAdapter(this, ioList);
-        recyclerView2.setAdapter(adapter2); //<<<<<<<<<<<<<<<-----------------------
+        recyclerView2.setAdapter(adapter2);
 
         adapter.setClickListener(this);
         adapter2.setClickListener(this);
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        relativeLayout = findViewById(R.id.itemLineLayout);
+        relativeLayout.setVisibility(View.VISIBLE);
         date =  findViewById(R.id.text_sales_order_date_input);
-        date.setText(currentDate);
+        date.setText(salesEdit.getSalesDate());
         editText = findViewById(R.id.text_customer_name_input_sales);
+        editText.setText(salesEdit.getSaleCustName());
         editText.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -138,9 +134,7 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
             e.printStackTrace();
         }
 
-        Log.d("HAHAH", str_result);
-        salesLatestID = str_result;
-        Log.d("HHA", salesLatestID);
+
     }
 
     @Override
@@ -197,13 +191,15 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
 
                 if(checkCustName && !ioList.isEmpty()){
 
-                    Sales sales = new Sales(salesLatestID, custID, editText.getText().toString(), date.getText().toString(), total, "Confirmed");
+                    Sales sales = new Sales(salesEdit.getSalesID(), custID, editText.getText().toString(), date.getText().toString(), total, "Confirmed");
                     AddSales addSales = new AddSales(sales, ioList);
                     addSales.execute("");
                     Intent intent = new Intent(this, SalesOrderMainFragment.class);
                     intent.putExtra("Sales", sales.getSalesID());
                     startActivity(intent);
+                    setResult(2);
                     finish();
+
 
                 }else{
 
@@ -329,35 +325,15 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
                         Log.d("Success", rs.getString(1));
                     }
 
-                    query = "SELECT * FROM SALES ORDER BY SALESID DESC LIMIT 1";
+                    query = " SELECT * FROM ITEMORDER WHERE ORDERID= '" + salesEdit.getSalesID() + "'";
                     stmt = con.createStatement();
                     rs = stmt.executeQuery(query);
-                    String latestID;
 
-                    if (rs.next()) {
-                        latestID = rs.getString(1);
-                        int numID = Integer.parseInt(latestID.substring(3,8)) + 1;
-                        if (numID < 10)
-                            latestID = "SO-0000" + Integer.toString(numID);
-                        else if (numID < 100)
-                            latestID = "SO-000" + Integer.toString(numID);
-                        else if (numID < 1000)
-                            latestID = "SO-00" + Integer.toString(numID);
-                        else if (numID < 10000)
-                            latestID = "SO-0" + Integer.toString(numID);
-                        else if (numID < 100000)
-                            latestID = "SO-" + Integer.toString(numID);
-
-                        Log.d("ID", latestID);
+                    while (rs.next()) {
+                        ioList.add(new ItemOrder(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getInt(6)));
+                        total += rs.getDouble(5);
                     }
 
-                    else {
-                        latestID = "SO-00001";
-                        Log.d("ID", latestID);
-                    }
-
-                    this.latestID = latestID;
-                    Log.d("HAHAHAha", this.latestID);
                     checkConnection = "Yes";
                     isSuccess = true;
                 }
@@ -367,12 +343,16 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
                 checkConnection = "No";
             }
 
-            return latestID;
+            return checkConnection;
         }
 
         @Override
         protected void onPostExecute(String s) {
             recyclerView.setAdapter(adapter);
+            TextView subtotalTV = findViewById(R.id.sales_order_sub_total);
+            TextView totalTV = findViewById(R.id.sales_order_total);
+            subtotalTV.setText(String.format("MYR%.2f", total));
+            totalTV.setText(String.format("MYR%.2f", total));
         }
     }
 
@@ -410,14 +390,21 @@ public class add_sales_orders extends AppCompatActivity implements CustomerListA
                 if (con == null) {
                     checkConnection = "No";
                 } else {
-                    String query = "INSERT INTO SALES VALUES('" + sales.getSalesID() + "', '" + sales.getSalesCustID() + "', '" +
-                            sales.getSaleCustName() + "', '" + sales.getSalesDate() + "', '" + sales.getSalesStatus() + "', '" +
-                            sales.getSalesPrice() + "')";
+                    String query = "UPDATE SALES SET SALESCUSTID='" + sales.getSalesCustID() + "', SALESCUSTNAME='" +
+                            sales.getSaleCustName() + "', SALESDATE='" + sales.getSalesDate() + "', SALESSTATUS='" + sales.getSalesStatus() + "', SALESPRICE='" +
+                            sales.getSalesPrice() + "' WHERE SALESID = '" + sales.getSalesID()+"'";
 
                     Statement stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
+                    query = "DELETE FROM ITEMORDER WHERE ORDERID='" + sales.getSalesID() + "'";
+
+                    stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+
                     for (ItemOrder io : ioList) {
+
+
                         query = "INSERT INTO ITEMORDER VALUES ('" + sales.getSalesID() + "', '" + io.getItemID() + "', '" +
                                 io.getItemName() + "', '" + io.getSellPrice() + "', '" + io.getTotal() + "', '" +
                                 io.getQuantity() + "')";

@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="30dp"
-                android:text="Shipped"
+                android:text="Pending"
                 android:textColor="#4CAF50"
                 android:textSize="14sp" />
 
@@ -105,7 +105,9 @@
         android:layout_below="@id/f_table"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        android:padding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
         android:stretchColumns="1">
 
         <TableRow
@@ -142,62 +144,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
-
-
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itemLine_2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Box ABC "
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/item_total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="20dp"
-                android:text="MYR 12.00"
-                android:textAlignment="textEnd"
-                android:textColor="@android:color/black"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp"
-            android:paddingRight="5dp">
-
-
-            <TextView
-                android:id="@+id/item_quantity_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1.0 x MYR 12.00"
-                android:textColor="@android:color/black" />
-
+                android:layout_span="2" />
 
         </TableRow>
-
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
-
-
-            <TextView
-                android:id="@+id/item_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This is a good ABC."
-                android:textColor="@android:color/black" />
-
-
-        </TableRow>
-
 
 
     </TableLayout>
@@ -208,7 +161,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/s_table"
         android:background="#FFFFFF"
-        android:padding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
         android:stretchColumns="0">
 
         <View
@@ -280,10 +235,5 @@
 
         </TableRow>
 
-        <TableRow
-
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"/>
     </TableLayout>
 </RelativeLayout>

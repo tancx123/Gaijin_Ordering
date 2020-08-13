@@ -1,16 +1,29 @@
 package com.example.orderandinventorysystem.Model;
 
-public class Sales {
+import java.io.Serializable;
 
-    private String salesID, saleCustName, salesDate,salesStatus;
+public class Sales implements Serializable {
+
+    private String salesID, salesCustID ,saleCustName, salesDate,salesStatus;
     private double salesPrice;
 
-    public Sales(String salesID, String saleCustName, String salesDate, double salesPrice, String salesStatus) {
+    public Sales() {}
+
+    public Sales(String salesID, String salesCustID,String saleCustName, String salesDate, double salesPrice, String salesStatus) {
         this.salesID = salesID;
+        this.salesCustID = salesCustID;
         this.saleCustName = saleCustName;
         this.salesDate = salesDate;
         this.salesPrice = salesPrice;
         this.salesStatus = salesStatus;
+    }
+
+    public String getSalesCustID() {
+        return salesCustID;
+    }
+
+    public void setSalesCustID(String salesCustID) {
+        this.salesCustID = salesCustID;
     }
 
     public String getSalesID() {

@@ -8,8 +8,19 @@
        />
 
     <item
+        android:id="@+id/addShipment"
+        android:title="Add Shipment"
+        />
+
+    <item
+        android:id="@+id/delivered"
+        android:title="Mark As Delivered"
+        android:visible="false"
+        />
+
+    <item
         android:id="@+id/delete"
-        android:title="Delete"
+        android:title="Delete Package"
         />
 
 </menu>

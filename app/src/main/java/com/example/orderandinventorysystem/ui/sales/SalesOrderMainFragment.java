@@ -1,34 +1,42 @@
 package com.example.orderandinventorysystem.ui.sales;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.orderandinventorysystem.Adapter.SectionsPagerAdapter;
-import com.google.android.material.navigation.NavigationView;
+import com.example.orderandinventorysystem.ConnectionPhpMyAdmin;
+import com.example.orderandinventorysystem.Model.ItemOrder;
+import com.example.orderandinventorysystem.Model.Sales;
+import com.example.orderandinventorysystem.ui.pack.PackageMain;
 import com.google.android.material.tabs.TabLayout;
 import com.example.orderandinventorysystem.R;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
 public class SalesOrderMainFragment extends AppCompatActivity {
 
+    Menu menu1;
     ViewPager viewPager;
     TabLayout tabLayout;
+    ArrayList<ItemOrder> ioList;
+    Sales sales;
+    boolean packCheck=false, shipCheck=false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,13 @@ public class SalesOrderMainFragment extends AppCompatActivity {
         getSupportActionBar().setTitle("Sales Order");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Intent intent = getIntent();
+        String intentSalesID = intent.getStringExtra("Sales");
+        SalesMainInfo salesMainInfo = new SalesMainInfo(intentSalesID);
+        salesMainInfo.execute("");
+
+
         viewPager = findViewById(R.id.viewpager_all_2);
         tabLayout = findViewById(R.id.tabLayout_2);
         setUpViewPager(viewPager);
@@ -65,9 +80,48 @@ public class SalesOrderMainFragment extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.sales_order_main_menu, menu);
+        menu1 = menu;
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.edit_sales: {
+                Intent intent = new Intent(this, edit_sales_orders.class);
+                intent.putExtra("SalesEdit", sales);
+                startActivityForResult(intent, 10);
+                return true;
+            }
+
+            case R.id.create_package: {
+
+                AddPackage addPackage = new AddPackage();
+                addPackage.execute("");
+                return true;
+            }
+
+            case R.id.delete: {
+                DeleteSales deleteSales = new DeleteSales(sales.getSalesID());
+                deleteSales.execute("");
+                this.finish();
+                return true;
+            }
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 2) {
+            finish();
+        }
+    }
 
     private void setUpViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -82,6 +136,244 @@ public class SalesOrderMainFragment extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        setResult(2);
+        finish();
         return true;
+    }
+
+    public class SalesMainInfo extends AsyncTask<String,String,String> {
+
+        String salesID;
+        Sales salesDB;
+        ArrayList <ItemOrder> ioListDB;
+
+        public Sales getSales() {
+            return salesDB;
+        }
+
+        public ArrayList<ItemOrder> getIoList() {
+            return ioList;
+        }
+
+        SalesMainInfo(String salesID) {
+            this.salesID = salesID;
+        }
+
+        String checkConnection = "";
+        boolean isSuccess = false;
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ConnectionPhpMyAdmin connectionClass = new ConnectionPhpMyAdmin();
+            try {
+                Connection con = connectionClass.CONN();
+                if (con == null) {
+                    checkConnection = "Please check your internet connection.";
+                } else {
+
+
+                    String query = " SELECT * FROM SALES WHERE salesID ='" + salesID + "'";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    if (rs.next()) {
+
+                        salesDB = new Sales(rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                rs.getDouble(6), rs.getString(5));
+                    }
+//                    query = " SELECT * FROM ITEMORDER WHERE orderID ='" + salesID + "'";
+//                    stmt = con.createStatement();
+//                    rs = stmt.executeQuery(query);
+//                    while (rs.next()) {
+//
+//                        ioListDB.add(new ItemOrder(rs.getString(1), rs.getString(2),
+//                                rs.getString(3), rs.getDouble(4),
+//                                rs.getDouble(5), rs.getInt(6)));
+//                    }
+
+                    query = " SELECT * FROM PACKAGE WHERE salesID ='" + salesID + "'";
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery(query);
+                    if (rs.next()) {
+
+                        packCheck = true;
+                    }
+
+
+                    Log.d("Success", "Done");
+                    checkConnection = "Done";
+                    isSuccess = true;
+
+                }
+            } catch (Exception ex) {
+                Log.d("Error", ex.toString());
+                isSuccess = false;
+                checkConnection = "Exceptions" + ex;
+            }
+
+            return checkConnection;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            sales = salesDB;
+            ioList = ioListDB;
+
+            TextView salesID = findViewById(R.id.sales_order_id);
+            salesID.setText(sales.getSalesID());
+
+            TextView custName = findViewById(R.id.cust_name);
+            custName.setText(sales.getSaleCustName());
+
+            TextView salesPrice = findViewById(R.id.sales_order_price);
+            salesPrice.setText(String.format("MYR%.2f", sales.getSalesPrice()));
+
+            TextView salesDate = findViewById(R.id.sales_order_date);
+            salesDate.setText(sales.getSalesDate());
+
+            TextView salesStatus = findViewById(R.id.sales_order_status);
+            salesStatus.setText(sales.getSalesStatus());
+
+            Log.d("HAHA", Boolean.toString(packCheck));
+            if(packCheck) {
+                MenuItem menuItem = menu1.findItem(R.id.create_package);
+                menuItem.setVisible(false);
+                MenuItem menuItem2 = menu1.findItem(R.id.delete);
+                menuItem2.setVisible(false);
+            }
+        }
+    }
+
+    public class DeleteSales extends AsyncTask<String,String,String> {
+
+        String salesID;
+
+        DeleteSales(String salesID) {
+            this.salesID = salesID;
+        }
+
+        String checkConnection = "";
+        boolean isSuccess = false;
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ConnectionPhpMyAdmin connectionClass = new ConnectionPhpMyAdmin();
+            try {
+                Connection con = connectionClass.CONN();
+                if (con == null) {
+                    checkConnection = "Please check your internet connection.";
+                } else {
+
+                    String query = " DELETE FROM SALES WHERE SALESID ='" + salesID + "'";
+                    Statement stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+
+                    query = " DELETE FROM ITEMORDER WHERE ORDERID ='" + salesID + "'";
+                    stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+
+                    Log.d("Success", "Done");
+                    checkConnection = "Done";
+                    isSuccess = true;
+
+                }
+            } catch (Exception ex) {
+                Log.d("Error", ex.toString());
+                isSuccess = false;
+                checkConnection = "Exceptions" + ex;
+            }
+
+            return checkConnection;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+        }
+    }
+
+    public class AddPackage extends AsyncTask<String,String,String> {
+
+        String checkConnection = "";
+        boolean isSuccess = false;
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ConnectionPhpMyAdmin connectionClass = new ConnectionPhpMyAdmin();
+            try {
+                Connection con = connectionClass.CONN();
+                if (con == null) {
+                    checkConnection = "Please check your internet connection.";
+                } else {
+
+                    String query = "SELECT * FROM PACKAGE ORDER BY PACKID DESC LIMIT 1";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    String latestID;
+
+                    if (rs.next()) {
+                        latestID = rs.getString(1);
+                        int numID = Integer.parseInt(latestID.substring(3,8)) + 1;
+                        if (numID < 10)
+                            latestID = "PK-0000" + Integer.toString(numID);
+                        else if (numID < 100)
+                            latestID = "PK-000" + Integer.toString(numID);
+                        else if (numID < 1000)
+                            latestID = "PK-00" + Integer.toString(numID);
+                        else if (numID < 10000)
+                            latestID = "PK-0" + Integer.toString(numID);
+                        else if (numID < 100000)
+                            latestID = "PK-" + Integer.toString(numID);
+
+                    }
+
+                    else {
+                        latestID = "PK-00001";
+                    }
+
+                    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+
+                    query = " INSERT INTO PACKAGE VALUES('" + latestID + "','" + currentDate + "','"+ sales.getSalesID() + "','PACKED')" ;
+                    stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+
+                    Log.d("Success", "Done");
+                    checkConnection = "Done";
+                    isSuccess = true;
+
+                }
+            } catch (Exception ex) {
+                Log.d("Error", ex.toString());
+                isSuccess = false;
+                checkConnection = "Exceptions" + ex;
+            }
+
+            return checkConnection;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

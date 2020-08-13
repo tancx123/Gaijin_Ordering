@@ -1,5 +1,6 @@
 package com.example.orderandinventorysystem.ui.pack;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +12,8 @@ import com.example.orderandinventorysystem.R;
 
 public class add_package extends AppCompatActivity {
 
+    String salesID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +23,9 @@ public class add_package extends AppCompatActivity {
         getSupportActionBar().setTitle("New Package");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Intent intent = new Intent();
+        salesID = intent.getStringExtra("SalesID");
+
     }
 
     @Override

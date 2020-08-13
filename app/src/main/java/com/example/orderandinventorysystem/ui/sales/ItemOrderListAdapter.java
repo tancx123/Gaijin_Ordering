@@ -41,7 +41,7 @@ public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdap
         ItemOrder itemOrder = mData.get(position);
         holder.name.setText(itemOrder.getItemName());
         holder.price_quantity.setText(String.format("%d x %.2f", itemOrder.getQuantity(), itemOrder.getSellPrice()));
-        holder.price.setText(String.format("%.2f", itemOrder.getTotal()));
+        holder.price.setText(String.format("MYR%.2f", itemOrder.getTotal()));
     }
 
     // total number of rows
@@ -52,10 +52,11 @@ public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdap
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, price_quantity, price;
+        TextView id, name, price_quantity, price;
 
         ViewHolder(View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.item_id);
             name = itemView.findViewById(R.id.item_name);
             price_quantity = itemView.findViewById(R.id.item_quantity_price);
             price = itemView.findViewById(R.id.item_price);
@@ -64,7 +65,7 @@ public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdap
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick2(view, getAdapterPosition(), id.getText().toString(), name.getText().toString());
         }
     }
 
@@ -80,6 +81,6 @@ public class ItemOrderListAdapter extends RecyclerView.Adapter<ItemOrderListAdap
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick2(View view, int position, String id, String name);
     }
 }

@@ -4,16 +4,34 @@ import java.io.Serializable;
 
 public class ItemOrder implements Serializable {
 
-    private String itemID, itemName;
+    private String orderID, itemID, itemName;
     private double sellPrice, total;
     private int quantity;
 
-    public ItemOrder(String itemID, String itemName, double sellPrice, int quantity) {
+    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, int quantity) {
+        this.orderID = orderID;
         this.itemID = itemID;
         this.itemName = itemName;
         this.sellPrice = sellPrice;
         this.quantity = quantity;
         total = sellPrice * quantity;
+    }
+
+    public ItemOrder(String orderID, String itemID, String itemName, double sellPrice, double total, int quantity) {
+        this.orderID = orderID;
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.sellPrice = sellPrice;
+        this.quantity = quantity;
+        this.total = total;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public double getTotal() {

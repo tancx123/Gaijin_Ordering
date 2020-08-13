@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
@@ -12,5 +13,18 @@
         android:id="@+id/download_sales"
         android:title="Download PDF"
        />
+
+    <item
+        android:id="@+id/delete"
+        android:title="Delete Sales Order"
+        />
+
+    <item
+        android:id="@+id/create_package"
+        android:title="Create Package"/>
+
+    <item
+        android:id="@+id/create_invoice"
+        android:title="Create Invoice"/>
 
 </menu>

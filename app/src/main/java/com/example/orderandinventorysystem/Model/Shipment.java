@@ -4,7 +4,7 @@ public class Shipment {
 
     private String packID, shipID, shipDate, carrier;
 
-    public Shipment(String packID, String shipID, String shipDate, String carrier) {
+    public Shipment(String shipID, String packID, String shipDate, String carrier) {
         this.packID = packID;
         this.shipID = shipID;
         this.shipDate = shipDate;

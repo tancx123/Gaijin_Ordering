@@ -1,13 +1,24 @@
 package com.example.orderandinventorysystem.Model;
 
-public class Package {
+import java.io.Serializable;
 
-    private String packID, packDate, salesID;
+public class Pack implements Serializable {
 
-    public Package(String packID, String packDate, String salesID) {
+    private String packID, packDate, salesID, packStatus;
+
+    public Pack(String packID, String packDate, String salesID, String packStatus) {
         this.packID = packID;
         this.packDate = packDate;
         this.salesID = salesID;
+        this.packStatus = packStatus;
+    }
+
+    public String getPackStatus() {
+        return packStatus;
+    }
+
+    public void setPackStatus(String packStatus) {
+        this.packStatus = packStatus;
     }
 
     public String getPackID() {

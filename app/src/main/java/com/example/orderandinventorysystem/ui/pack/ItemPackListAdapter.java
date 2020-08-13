@@ -8,19 +8,19 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.orderandinventorysystem.Model.Pack;
+import com.example.orderandinventorysystem.Model.ItemOrder;
 import com.example.orderandinventorysystem.R;
 
 import java.util.List;
 
-public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.ViewHolder> {
+public class ItemPackListAdapter extends RecyclerView.Adapter<ItemPackListAdapter.ViewHolder> {
 
-    private List<Pack> mData;
+    private List<ItemOrder> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public PackageListAdapter(Context context, List<Pack> data) {
+    public ItemPackListAdapter(Context context, List<ItemOrder> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -28,20 +28,18 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.pack_list_layout, parent, false);
+        View view = mInflater.inflate(R.layout.item_pack_list_layout, parent, false);
         return new ViewHolder(view);
+
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Pack pack = mData.get(position);
-        //holder.name.setText();
-        holder.id.setText(pack.getPackID());
-        holder.id2.setText(pack.getSalesID());
-        holder.date.setText(pack.getPackDate());
-        //holder.status.setText(pack.get());
-        //holder.quantity.setText(String.format("%.d", pack.()));
+
+        ItemOrder itemOrder = mData.get(position);
+        holder.name.setText(itemOrder.getItemName());
+        holder.price.setText(String.format("%d", itemOrder.getQuantity()));
     }
 
     // total number of rows
@@ -52,27 +50,24 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, id, date, status, quantity, id2;
+        TextView id, name, price;
 
         ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.cust_name_view);
-            id = itemView.findViewById(R.id.pack_id);
-            id2 = itemView.findViewById(R.id.sales_order_id);
-            date = itemView.findViewById(R.id.pack_date);
-            status = itemView.findViewById(R.id.pack_status2);
-            quantity = itemView.findViewById(R.id.item_quantity);
+            id = itemView.findViewById(R.id.item_id);
+            name = itemView.findViewById(R.id.item_name);
+            price = itemView.findViewById(R.id.item_price);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick2(view, getAdapterPosition(), id.getText().toString(), name.getText().toString());
         }
     }
 
     // convenience method for getting data at click position
-    public Pack getItem(int id) {
+    public ItemOrder getItem(int id) {
         return mData.get(id);
     }
 
@@ -83,6 +78,6 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick2(View view, int position, String id, String name);
     }
 }
