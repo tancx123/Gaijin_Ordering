@@ -1,8 +1,15 @@
 package com.example.orderandinventorysystem.ui.sales;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +31,9 @@ import com.example.orderandinventorysystem.ui.pack.PackageMain;
 import com.google.android.material.tabs.TabLayout;
 import com.example.orderandinventorysystem.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -92,6 +102,12 @@ public class SalesOrderMainFragment extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
+            case R.id.download_sales: {
+
+                pdfGenerate();
+                return true;
+            }
+
             case R.id.edit_sales: {
                 Intent intent = new Intent(this, edit_sales_orders.class);
                 intent.putExtra("SalesEdit", sales);
@@ -155,6 +171,40 @@ public class SalesOrderMainFragment extends AppCompatActivity {
         }
     }
 
+    public void pdfGenerate() {
+
+        Bitmap bmp, scaledbmp;
+        int pageWidth = 1200, pageHeight = 2010;
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.gaijin);
+        scaledbmp = Bitmap.createScaledBitmap(bmp, 300, 300, false);
+
+        PdfDocument salesPdf = new PdfDocument();
+        Paint paint = new Paint();
+
+        PdfDocument.PageInfo pageInfo1 = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
+        PdfDocument.Page page1 = salesPdf.startPage(pageInfo1);
+        Canvas canvas = page1.getCanvas();
+        canvas.drawBitmap(scaledbmp, 0, 0, paint);
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTextSize(70);
+        canvas.drawText("Sales Order", pageWidth/2, 270, paint);
+
+        salesPdf.finishPage(page1);
+
+        File file = new File (Environment.getExternalStorageDirectory(), "SalesOrder.pdf");
+
+        try {
+            salesPdf.writeTo(new FileOutputStream(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        salesPdf.close();
+
+
+    }
+
     private void setUpViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -177,7 +227,7 @@ public class SalesOrderMainFragment extends AppCompatActivity {
 
         String salesID;
         Sales salesDB;
-        ArrayList <ItemOrder> ioListDB;
+        ArrayList <ItemOrder> ioListDB= new ArrayList<>();
 
         public Sales getSales() {
             return salesDB;
@@ -227,6 +277,16 @@ public class SalesOrderMainFragment extends AppCompatActivity {
 
                         invoiceCheck = true;
 
+                    }
+
+                    query = " SELECT * FROM ITEMORDER WHERE orderID ='" + salesID + "'";
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery(query);
+                    while (rs.next()) {
+
+                        ioListDB.add(new ItemOrder(rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getDouble(4),
+                                rs.getDouble(5), rs.getInt(6), rs.getDouble(7)));
                     }
 
                     query = " SELECT * FROM PACKAGE WHERE salesID ='" + salesID + "'";
@@ -408,6 +468,14 @@ public class SalesOrderMainFragment extends AppCompatActivity {
                     query = " INSERT INTO PACKAGE VALUES('" + latestID + "','" + currentDate + "','"+ sales.getSalesID() + "','PACKED')" ;
                     stmt = con.createStatement();
                     stmt.executeUpdate(query);
+
+                    for (int i=0; i < ioList.size(); i++) {
+
+                        query = "UPDATE ITEM SET ITEMQUANTITYPHY= ITEMQUANTITYPHY - '" + ioList.get(i).getQuantity() + "' WHERE ITEMID='" + ioList.get(i).getItemID() + "'";
+                        stmt = con.createStatement();
+                        stmt.executeUpdate(query);
+
+                    }
 
                     Log.d("Success", "Done");
                     checkConnection = "Done";

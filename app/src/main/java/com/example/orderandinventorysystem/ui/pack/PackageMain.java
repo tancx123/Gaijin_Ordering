@@ -330,6 +330,13 @@ public class PackageMain extends AppCompatActivity {
                     Statement stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
+                    for (int i=0; i < ioList.size(); i++) {
+
+                        query = "UPDATE ITEM SET ITEMQUANTITYPHY= ITEMQUANTITYPHY + '" + ioList.get(i).getQuantity() + "' WHERE ITEMID='" + ioList.get(i).getItemID() + "'";
+                        stmt = con.createStatement();
+                        stmt.executeUpdate(query);
+                    }
+
                     Log.d("Success", "Done");
                     checkConnection = "Done";
                     isSuccess = true;
@@ -372,6 +379,10 @@ public class PackageMain extends AppCompatActivity {
 
                     String query = " DELETE FROM Shipment WHERE PACKID ='" + intentPackageID + "'";
                     Statement stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+
+                    query = " UPDATE PACKAGE SET PACKSTATUS='PACKED' WHERE PACKID ='" + intentPackageID + "'";
+                    stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
                     Log.d("Success", "Done");

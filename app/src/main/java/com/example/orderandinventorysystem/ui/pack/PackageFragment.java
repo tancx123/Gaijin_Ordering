@@ -32,9 +32,11 @@ public class PackageFragment extends Fragment {
         myFragment = inflater.inflate(R.layout.fragment_packages, container,false);
         viewPager = myFragment.findViewById(R.id.viewpager_all);
         tabLayout = myFragment.findViewById(R.id.tabLayout);
-
+        viewPager.setOffscreenPageLimit(4);
         return myFragment;
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

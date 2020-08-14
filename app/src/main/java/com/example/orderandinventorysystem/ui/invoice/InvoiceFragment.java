@@ -1,10 +1,13 @@
 package com.example.orderandinventorysystem.ui.invoice;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,27 +15,40 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.orderandinventorysystem.ConnectionPhpMyAdmin;
 import com.example.orderandinventorysystem.Model.Invoice;
 import com.example.orderandinventorysystem.Model.Item;
+import com.example.orderandinventorysystem.Model.Sales;
 import com.example.orderandinventorysystem.R;
 import com.example.orderandinventorysystem.ui.item.ItemListAdapter;
 import com.example.orderandinventorysystem.ui.item.ItemMain;
+import com.example.orderandinventorysystem.ui.sales.SalesListAdapter;
+import com.example.orderandinventorysystem.ui.sales.SalesOrderMainFragment;
+import com.example.orderandinventorysystem.ui.sales.sales_avail;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class InvoiceFragment extends Fragment implements InvoiceListAdapter.ItemClickListener{
 
     InvoiceListAdapter adapter;
+    ArrayList<Invoice> invList;
+    RecyclerView recyclerView;
+    View root;
+    TextView con;
+    private boolean shouldRefreshOnResume = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_invoice, container, false);
-        ArrayList<Invoice> invList = new ArrayList<>();
-//        invList.add(new Invoice("INV-00001", "SO-00001", "Lee Chong Wei", "12 May 2020", "PAID",12.00));
-//        invList.add(new Invoice("INV-00002", "SO-00002", "Hehehe Wei", "12 Aug 2020", "PAID", 100.00));
+        root = inflater.inflate(R.layout.fragment_invoice, container, false);
+        invList = new ArrayList<>();
 
-        RecyclerView recyclerView = root.findViewById(R.id.inv_recycler_view);
+        ShowInvList showInvList = new ShowInvList();
+        showInvList.execute("");
+        recyclerView = root.findViewById(R.id.inv_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new InvoiceListAdapter(getContext(), invList);
         adapter.setClickListener(this);
@@ -42,6 +58,84 @@ public class InvoiceFragment extends Fragment implements InvoiceListAdapter.Item
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getContext(), InvoiceMainFragment.class));
+        Intent intent = new Intent(getContext(), InvoiceMainFragment.class);
+        intent.putExtra("Invoice", invList.get(position).getInvID());
+        startActivityForResult(intent, 16);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Check should we need to refresh the fragment
+        if(shouldRefreshOnResume){
+            invList = new ArrayList<>();
+            ShowInvList showInvList = new ShowInvList();
+            showInvList.execute("");
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter = new InvoiceListAdapter(getContext(), invList);
+            adapter.setClickListener(this);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        shouldRefreshOnResume = true;
+    }
+
+    public class ShowInvList extends AsyncTask<String,String,String> {
+
+        String checkConnection = "";
+        boolean isSuccess = false;
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ConnectionPhpMyAdmin connectionClass = new ConnectionPhpMyAdmin();
+            try {
+                Connection con = connectionClass.CONN();
+                if (con == null) {
+                    checkConnection = "No";
+                } else {
+
+                    String query = " SELECT * FROM INVOICE ";
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+                        invList.add(new Invoice(rs.getString(1),rs.getString(2),
+                                rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6),
+                                rs.getString(7)
+                        ));
+                        Log.d("Success", rs.getString(1));
+                    }
+
+                    checkConnection = "Yes";
+                    isSuccess = true;
+
+                }
+            } catch (Exception ex) {
+                Log.d("Error", ex.toString());
+                isSuccess = false;
+                checkConnection = "No";
+            }
+
+            return checkConnection;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            recyclerView.setAdapter(adapter);
+
+            if (checkConnection.equals("No")) {
+
+                con.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }

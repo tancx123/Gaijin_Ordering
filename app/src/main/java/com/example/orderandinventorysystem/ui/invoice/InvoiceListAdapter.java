@@ -37,11 +37,12 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Invoice inv = mData.get(position);
         holder.name.setText(inv.getInvCustName());
-        holder.id.setText(inv.getSalesID());
+        holder.id2.setText(inv.getSalesID());
         holder.id.setText(inv.getInvID());
         holder.date.setText(inv.getInvDate());
         holder.status.setText(inv.getInvStatus());
-        holder.price.setText(String.format("%.2f", inv.getInvPrice()));
+        holder.dueDate.setText(inv.getInvDueDate());
+        holder.price.setText(String.format("MYR%.2f", inv.getInvPrice()));
     }
 
     // total number of rows
@@ -52,7 +53,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, id, date, status, price, id2;
+        TextView name, id, date, status, price, id2, dueDate;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +63,7 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             date = itemView.findViewById(R.id.invoice_date);
             status = itemView.findViewById(R.id.inv_order_status2);
             price = itemView.findViewById(R.id.inv_order_price);
+            dueDate = itemView.findViewById(R.id.invoice_due_date);
             itemView.setOnClickListener(this);
         }
 

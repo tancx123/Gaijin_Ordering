@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.orderandinventorysystem.Model.Pack;
+import com.example.orderandinventorysystem.Model.Sales;
 import com.example.orderandinventorysystem.R;
 
 import java.util.List;
@@ -16,13 +17,15 @@ import java.util.List;
 public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.ViewHolder> {
 
     private List<Pack> mData;
+    private List<Sales> mData2;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public PackageListAdapter(Context context, List<Pack> data) {
+    public PackageListAdapter(Context context, List<Pack> data, List<Sales> date2) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mData2 = date2;
     }
 
     // inflates the row layout from xml when needed
@@ -36,12 +39,13 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Pack pack = mData.get(position);
-        //holder.name.setText();
+        Sales sales = mData2.get(position);
+        holder.name.setText(sales.getSaleCustName());
         holder.id.setText(pack.getPackID());
         holder.id2.setText(pack.getSalesID());
         holder.date.setText(pack.getPackDate());
-        //holder.status.setText(pack.get());
-        //holder.quantity.setText(String.format("%.d", pack.()));
+        holder.status.setText(pack.getPackStatus());
+        //holder.quantity.setText(String.format("%d", sales.get()));
     }
 
     // total number of rows

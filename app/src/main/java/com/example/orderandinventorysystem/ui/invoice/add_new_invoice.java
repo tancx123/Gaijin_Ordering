@@ -200,6 +200,26 @@ public class add_new_invoice extends AppCompatActivity {
                     Statement stmt = con.createStatement();
                     stmt.executeUpdate(query);
 
+                    ArrayList<ItemOrder> ioList = new ArrayList<>();
+
+                    query = " SELECT * FROM ITEMORDER WHERE orderID ='" + invoice.getSalesID() + "'";
+                    stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                    while (rs.next()) {
+
+                        ioList.add(new ItemOrder(rs.getString(1), rs.getString(2),
+                                rs.getString(3), rs.getDouble(4),
+                                rs.getDouble(5), rs.getInt(6), rs.getDouble(7)));
+                    }
+
+                    for (int i=0; i < ioList.size(); i++) {
+
+                        query = "UPDATE ITEM SET ITEMQUANTITY= ITEMQUANTITY - '" + ioList.get(i).getQuantity() + "' WHERE ITEMID='" + ioList.get(i).getItemID() + "'";
+                        stmt = con.createStatement();
+                        stmt.executeUpdate(query);
+
+                    }
+
                     checkConnection = "Yes";
                     isSuccess = true;
                 }

@@ -40,7 +40,7 @@ public class SalesListAdapter extends RecyclerView.Adapter<SalesListAdapter.View
         holder.id.setText(sales.getSalesID());
         holder.date.setText(sales.getSalesDate());
         holder.status.setText(sales.getSalesStatus());
-        holder.price.setText(String.format("%.2f", sales.getSalesPrice()));
+        holder.price.setText(String.format("MYR%.2f", sales.getSalesPrice()));
     }
 
     // total number of rows

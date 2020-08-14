@@ -127,6 +127,9 @@ public class PaymentMain extends AppCompatActivity {
             TextView sales_order_price = findViewById(R.id.sales_order_price);
             sales_order_price.setText(String.format("MYR%.2f", invoice.getInvPrice()));
 
+            TextView sales_order_date = findViewById(R.id.sales_order_date);
+            sales_order_date.setText(payment.getPayDate());
+
             TextView invoice_id = findViewById(R.id.invoice_id);
             invoice_id.setText(invoice.getInvID());
 

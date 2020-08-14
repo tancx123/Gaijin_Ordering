@@ -41,7 +41,11 @@ public class ItemOrderListAdapterTwo extends RecyclerView.Adapter<ItemOrderListA
         holder.name.setText(itemOrder.getItemName());
         holder.price_quantity.setText(String.format("%d x %.2f", itemOrder.getQuantity(), itemOrder.getSellPrice()));
         holder.price.setText(String.format("MYR%.2f", itemOrder.getTotal()));
-        holder.discount.setText(String.format("- MYR%.2f", (itemOrder.getTotal() * itemOrder.getDiscount()/ 100)));
+
+        if (itemOrder.getDiscount() == 0)
+            holder.discount.setText("");
+        else
+            holder.discount.setText(String.format("- MYR%.2f", (itemOrder.getTotal() * itemOrder.getDiscount()/ 100)));
     }
 
     // total number of rows
