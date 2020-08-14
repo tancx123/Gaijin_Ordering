@@ -314,9 +314,6 @@ public class SalesOrderMainFragment extends AppCompatActivity {
         canvas.drawLine(100, 1200, 450, 1200, paint);
         canvas.drawLine(700, 1200, 1050, 1200, paint);
 
-
-
-
         salesPdf.finishPage(page1);
 
         File file = new File (getExternalFilesDir(null),"SalesOrder.pdf");
